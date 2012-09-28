@@ -1,0 +1,2 @@
+class AnalyticDataController < ApplicationController
+end

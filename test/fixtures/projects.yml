@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  domain: MyString
+  git_url: MyString
+  project_mgt_tool: MyString
+
+two:
+  name: MyString
+  domain: MyString
+  git_url: MyString
+  project_mgt_tool: MyString
