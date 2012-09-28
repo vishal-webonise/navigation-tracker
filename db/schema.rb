@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120928103927) do
+ActiveRecord::Schema.define(:version => 20120928113926) do
 
   create_table "analytic_data", :force => true do |t|
     t.integer  "project_id"
@@ -35,6 +35,13 @@ ActiveRecord::Schema.define(:version => 20120928103927) do
     t.string   "email"
     t.string   "password"
     t.string   "login_type"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "users_projects", :id => false, :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "project_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
