@@ -10,7 +10,7 @@ NavigationTracker::Application.load_tasks
 desc 'Add Admin user'
 namespace :app do
     task :add_admin_user => :environment do
-      user = User.create!(name: 'Admin', email: 'admin@weboniselab.com', login_type: 'admin', password: '123456')
+      user = User.create!(name: 'Admin', email: 'admin@analytics.com', login_type: 'admin', password: 'analytics2012')
       user.save
     end
 end
