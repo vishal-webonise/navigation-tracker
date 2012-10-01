@@ -1,6 +1,12 @@
 NavigationTracker::Application.routes.draw do
+  devise_for :users
+
+  root :to => 'static_pages#home'
   get "static_pages/home"
+
   resources :projects
+
+  resources :users
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -34,4 +34,7 @@ NavigationTracker::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  # Devise: action mailer default url
+  config.action_mailer.default_url_options = { :host => 'local.pols5.com' }
 end

@@ -24,6 +24,8 @@ gem 'bootstrap-sass', '2.1.0'
 
 gem 'jquery-rails'
 
+gem 'devise'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
