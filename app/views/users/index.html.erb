@@ -1,5 +1,9 @@
 <% if user_signed_in? %>
-	<p>Test</p>
+	<% if is_admin? %>
+		<p>Is Admin</p>
+	<% else %>
+		Is regular user
+	<% end %>
 <% else %>
-	hoooo
+	is visitor
 <% end %>
