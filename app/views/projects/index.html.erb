@@ -1,0 +1,12 @@
+
+<%= link_to "Create New Project", :controller => "projects", :action => "new", :id => @project %>
+
+<h1>All projects</h1>
+
+<ul class="projects">
+  <% @projects.each do |project| %>
+      <li>
+        <%= link_to project.name, project %>
+      </li>
+  <% end %>
+</ul>
