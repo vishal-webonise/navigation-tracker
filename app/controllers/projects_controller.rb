@@ -6,10 +6,9 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    @project=Project.new(params[:project])
+    @project = current_user.projects.build(params[:project])
     if @project.save
       flash[:success] = "Project created successfully"
-      #redirect_to root_path
       redirect_to projects_path
 
     end
@@ -29,23 +28,28 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    #@user = User.find(params[:id])
     @project = Project.find(params[:id])
-
-
   end
 
   def destroy
     @project=Project.find(params[:id])
     @project.destroy
-    #Project.find(params[:id]).destroy
     flash[:success] = "Project destroyed."
     redirect_to projects_path
-
-
   end
 
   def index
     @projects=Project.all
+  end
+
+  def search
+    @projects = Project.where("name LIKE ?", "%params[:q]%")
+    respond_to do |format|
+      @projects.each do |p|
+        data={:id=> p.id ,:name=> p.name}
+        format.json{render :json => @data }
+
+      end
+    end
   end
 end
