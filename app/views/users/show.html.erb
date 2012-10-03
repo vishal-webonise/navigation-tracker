@@ -4,7 +4,7 @@
 				<a href="<%= user_path(current_user) %>">
   				<%= gravatar_for @user, size: 52 %>
 				</a>
-				<h1><%= @user.name %></h1>
+				<h1><%= "#{@user.first_name} #{@user.last_name}" %></h1>
 				<span>
 					Projects: <%= @user.projects.count %>
 				</span>
@@ -14,7 +14,7 @@
 		<section class="page-header">
 			<h3>
 				Projects
-				<small><%= @user.name %> is currently assigned for <%= @user.projects.count %> projects</small>
+				<small><%= "#{@user.first_name} #{@user.last_name}" %> is currently assigned for <%= @user.projects.count %> projects</small>
 			</h3>
 		</section>
 		<% if @user.projects.any? %>

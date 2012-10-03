@@ -17,7 +17,7 @@
 				<tbody>
 					<% @users.each do |user| %>
 						<tr>
-							<td><%= user.name %>
+							<td><%= user.first_name user.last_name %>
 								<small>(<%= user.projects.count %> projects)</small>
 							</td>
 							<td>
