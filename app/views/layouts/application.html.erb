@@ -3,7 +3,10 @@
 <head>
   <title><%= full_title(yield(:title)) %></title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "jquery.inputput.js","application" %>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+  <script type="text/javascript" src="jquery.tokeninput.js"></script>
+  <link rel="stylesheet" type="text/css" href="token-input.css" />
   <%= csrf_meta_tags %>
   <%= render partial: "layouts/shim" %>
 </head>
@@ -20,3 +23,7 @@
     </div>
 </body>
 </html>
+
+
+
+

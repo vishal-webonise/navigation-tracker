@@ -7,8 +7,15 @@
   <% @projects.each do |project| %>
       <li>
         <%= project.name %>
+        <%= link_to "Show", :controller => "projects", :action => "show", :id => project.id %>
         <%= link_to "Update", :controller => "projects", :action => "edit", :id => project.id %>
-        <%= link_to "Delete", :controller => "projects", :action => "destroy", :id => project.id %>
       </li>
   <% end %>
 </ul>
+
+<%= form_tag(search_path, :method => 'get') do %>
+
+    <%= text_field_tag(:q, params[:q]) %>
+
+<% end %>
+

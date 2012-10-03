@@ -1,18 +1,19 @@
 <% provide(:title, 'Home') %>
 
 <div class="center hero-unit">
-    <h1>Welcome!</h1>
-    <%if user_signed_in? && is_admin? %>
-    	<h2>Let's manage:</h2>
-			<section>
-				<%= link_to "Users", users_path, class: "btn btn-large" %>
-				<%= link_to "Projects", projects_path, class: "btn btn-large" %>
-			</section>
-    <% elsif user_signed_in? && !is_admin? %>
-    	<h2>Let's dive in &mdash;</h2>
-    	<%= link_to "View your profile", user_path(current_user), class: "btn btn-large btn-primary" %>
-		<% else %>
-    	<h2>Want analytics for your website, huh?</h2>
-    	<%= link_to "Sign up now!", new_user_session_path, class: "btn btn-large btn-primary" %>
-    <% end %>
-  </div>
+  <h1>Welcome!</h1>
+  <%if user_signed_in? && is_admin? %>
+      <h2>Let's manage:</h2>
+      <section>
+        <%= link_to "Users", users_path, class: "btn btn-large" %>
+        <%= link_to "Projects", projects_path, class: "btn btn-large" %>
+      </section>
+  <% elsif user_signed_in? && !is_admin? %>
+      <h2>Let's dive in &mdash;</h2>
+      <%= link_to "View your profile", user_path(current_user), class: "btn btn-large btn-primary" %>
+      <%= link_to "View your projects",projects_path, class: "btn btn-large btn-primary" %>
+  <% else %>
+      <h2>Want analytics for your website, huh?</h2>
+      <%= link_to "Sign up now!", new_user_session_path, class: "btn btn-large btn-primary" %>
+  <% end %>
+</div>

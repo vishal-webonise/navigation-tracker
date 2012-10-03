@@ -3,6 +3,10 @@ NavigationTracker::Application.routes.draw do
 
   root :to => 'static_pages#home'
   get "static_pages/home"
+  #get "projects/tags" => "products#tags", :as => :tags
+
+
+  match "projects/search" =>'projects#search', :as => :search
 
   resources :projects
 
