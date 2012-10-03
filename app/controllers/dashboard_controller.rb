@@ -12,4 +12,10 @@ class DashboardController < ApplicationController
       redirect_to :back
     end
   end
+
+  # def user_projects
+  #   @user_projects = current_user.projects
+  #    respond_to do |format|
+  #     format.js { }
+  # end
 end

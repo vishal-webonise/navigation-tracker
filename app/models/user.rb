@@ -19,8 +19,6 @@ class User < ActiveRecord::Base
       self.login_type ||= 'regular_user'
     end
 
-    private
-
     def send_welcome_email
       UserMailer.welcome_email(self).deliver
     end
