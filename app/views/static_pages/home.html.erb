@@ -16,7 +16,7 @@
     	<%= link_to "View your profile", user_path(current_user), class: "btn btn-large btn-primary" %>
     </div>
 <% else %>
-    <div class="row">
+    <div id="home_page" class="row">
         <div class="span7">
             <h1>Realtime Tracking Navigation for Websites</h1>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -26,12 +26,12 @@
             cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
             proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
             <p>
-                <%= link_to "Sign up now!", new_user_session_path, class: "btn btn-large btn-success" %>
+                <%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-large btn-success" %>
                 <%= link_to "Take a tour", '#', class: "btn btn-large" %>
             </p>
         </div>
         <div class="span5">
-            <img src="http://placehold.it/520x450" class="img-polaroid">
+            <%= image_tag "520x450.gif", alt: "[520x450 image]", class: "img-polaroid" %>
         </div>
     </div>	
 <% end %>

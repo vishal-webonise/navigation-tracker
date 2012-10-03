@@ -57,7 +57,7 @@ h1 {
   font-size: 3em;
   letter-spacing: -2px;
   margin-bottom: 30px;
-  text-align: left;
+  text-align: center;
 }
 
 h2 {
@@ -201,4 +201,12 @@ aside {
 .gravatar {
   float: left;
   margin-right: 10px;
+}
+
+/* home page */
+
+#home_page {
+  h1 {
+    text-align: left;
+  }
 }
