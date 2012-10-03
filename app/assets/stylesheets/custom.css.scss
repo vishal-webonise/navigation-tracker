@@ -10,6 +10,18 @@ $grayMediumLight: #eaeaea;
   box-sizing: border-box;
 }
 
+@mixin rounded($radius: 10px) {
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin box_shadow($options: 0 0 5px #eeeeee) {
+  -moz-box-shadow: $options;
+  -webkit-box-shadow: $options;
+  box-shadow: $options;
+}
+
 /* universal */
 
 html {
@@ -65,7 +77,7 @@ p {
 /* bootstrap modifications */
 
 .hero-unit {
-	 background-color: #fafafa;
+   background-color: #fafafa;
 }
 
 /* header */
@@ -113,7 +125,7 @@ footer {
 
 /* forms */
 
-input, textarea, select, .uneditable-input {
+textarea, select, .uneditable-input {
   border: 1px solid #bbb;
   width: 100%;
   padding: 10px;
@@ -123,9 +135,23 @@ input, textarea, select, .uneditable-input {
 }
 
 #error_explanation {
-  color: #f00;
+  @include box_shadow(0 0 5px #ddd);
+  width: 70%;
+  margin: 0 auto;
+  color: $red;
+  border: 1px dashed $grayMediumLight;
+  margin-bottom: 20px;
+  background: #FFECEC;
+  h2 {
+    font-size: 20px;
+    color: $gray;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px dashed #ccc;
+  }
   ul {
-    list-style: none;
+    padding: 0 10px;
+    list-style: circle inside none;
     margin: 0 0 18px 0;
   }
 }
@@ -133,6 +159,7 @@ input, textarea, select, .uneditable-input {
 .field_with_errors {
   @extend .control-group;
   @extend .error;
+  display: inline;
  }
 
 /* miscellaneous */
@@ -143,4 +170,35 @@ input, textarea, select, .uneditable-input {
   width: 100%;
   margin-top: 45px;
   @include box_sizing;
+}
+
+/* sidebar */
+
+aside {
+  section {
+    padding: 10px 0;
+    border-top: 1px solid $grayLighter;
+    &:first-child {
+      border: 0;
+      padding-top: 0;
+    }
+    span {
+      display: block;
+      margin-bottom: 3px;
+      line-height: 1;
+      font-size: 12px;
+      color: $gray;
+    }
+    h1 {
+      font-size: 1.3em;
+      text-align: left;
+      letter-spacing: -1px;
+      margin-bottom: 3px;
+    }
+  }
+}
+
+.gravatar {
+  float: left;
+  margin-right: 10px;
 }
