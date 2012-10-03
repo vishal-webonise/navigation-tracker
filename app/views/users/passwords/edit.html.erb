@@ -1,16 +1,26 @@
-<h2>Change your password</h2>
-
-<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
+<h1>Change your password <small>scared? &mdash; don't wait then!</small></h1>
+<hr>
+<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put, :class => 'form-horizontal' }) do |f| %>
   <%= devise_error_messages! %>
   <%= f.hidden_field :reset_password_token %>
 
-  <div><%= f.label :password, "New password" %><br />
-  <%= f.password_field :password %></div>
+  <div class="control-group">
+    <%= f.label :password, "New password", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.password_field :password, :autocomplete => "off" %>
+    </div>
+  </div>
 
-  <div><%= f.label :password_confirmation, "Confirm new password" %><br />
-  <%= f.password_field :password_confirmation %></div>
+  <div class="control-group">
+    <%= f.label :password_confirmation, "Confirm new password", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.password_field :password_confirmation %>
+    </div>
+  </div>
 
-  <div><%= f.submit "Change my password" %></div>
+  <div class="form-actions">
+    <%= f.submit "Change my password", :class => 'btn btn-primary' %>
+  </div>
 <% end %>
 
 <%= render "devise/shared/links" %>
