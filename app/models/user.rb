@@ -11,11 +11,18 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 6, maximum: 12 }
   has_and_belongs_to_many :projects
   before_save :default_values
+  after_create :send_welcome_email
   
   private
 
     def default_values
       self.login_type ||= 'regular_user'
+    end
+
+    private
+
+    def send_welcome_email
+      UserMailer.welcome_email(self).deliver
     end
 
 end
