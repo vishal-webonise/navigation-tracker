@@ -1,15 +1,29 @@
-<table>
+<table xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+  <tr>
+    <td>
+      <strong>Name of the Project:</strong>
+      <%= @project.name %> <br><br>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong>Name of the Domain:</strong>
+      <%= @project.domain %> <br><br>
 
-  <% @project.each do |i| %>
-      <tr>
-        <td>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong>Domain Url:</strong>
+      <%= @project.git_url %> <br><br>
+    </td>
+  </tr>
 
-          <%=i.name %>
-
-        </td>
-
-      </tr>
-
-  <%end%>
-
+  <tr>
+    <td>
+      <strong>Set Start Counter:</strong>
+      <%= @project.project_mgt_tool %> <br><br>
+    </td>
+  </tr>
 </table>
+
