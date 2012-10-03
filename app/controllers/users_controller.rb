@@ -9,6 +9,7 @@ class UsersController < ApplicationController
     @assign_users = User.where("first_name LIKE ?", "%#{query}%")
     respond_to do |format|
       format.json { render :json => @assign_users }
+      format.html { render :index }
     end
   end
 
