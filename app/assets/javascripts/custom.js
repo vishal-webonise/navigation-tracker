@@ -8,6 +8,6 @@ jQuery(document).ready(function() {
 
 	// Token input
 	$("#select_project").tokenInput("dashboard/user_projects");
-	$("#select_users").tokenInput("users/index");
-	
+	$("#select_users").tokenInput("users", { propertyToSearch: "first_name"});
+
 });

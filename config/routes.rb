@@ -17,6 +17,7 @@ NavigationTracker::Application.routes.draw do
   resources :dashboard do
     collection do
       post :create_project
+      get :user_projects
     end
   end
 

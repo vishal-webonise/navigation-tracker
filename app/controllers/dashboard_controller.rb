@@ -13,9 +13,11 @@ class DashboardController < ApplicationController
     end
   end
 
-  # def user_projects
-  #   @user_projects = current_user.projects
-  #    respond_to do |format|
-  #     format.js { }
-  # end
+  def user_projects
+    query = params[:q]
+    @user_projects = current_user.projects.where("name LIKE ?", "%#{query}%")
+    respond_to do |format|
+      format.json { render :json => @user_projects }
+    end
+  end
 end
