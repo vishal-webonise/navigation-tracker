@@ -1,22 +1,28 @@
-<h2>Hi, <%= @user.name %>!</h2>
 <div class="row">
-	<div class="span3">
-		Gravatar Image
-	</span>
-	<div class="span9">
-		<ul>
-			<li>
-				<span>Name</span>
-				<span><%= @user.name %></span>
-			</li>
-			<li>
-				<span>Email</span>
-				<span><%= @user.email %></span>
-			</li>
-			<li>
-				<span>Projects</span>
-				<span>#</span>
-			</li>
-		</ul>
+		<aside class="span2">
+      <section>
+				<a href="<%= user_path(current_user) %>">
+  				<%= gravatar_for @user, size: 52 %>
+				</a>
+				<h1><%= @user.name %></h1>
+				<span>
+					Projects: <%= @user.projects.count %>
+				</span>
+			</section>
+		</aside>
+	<div class="span10">
+		<section class="page-header">
+			<h3>
+				Projects
+				<small><%= @user.name %> is currently assigned for <%= @user.projects.count %> projects</small>
+			</h3>
+		</section>
+		<% if @user.projects.any? %>
+			
+		<% else %>
+			<div class="well well-large">
+				This user hasn't assigned for any project yet.
+			</div>
+		<% end %>
 	</div>
 </div>
