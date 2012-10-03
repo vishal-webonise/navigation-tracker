@@ -10,7 +10,11 @@ NavigationTracker::Application.routes.draw do
 
   resources :users
 
-  resources :dashboard
+  resources :dashboard do
+    collection do
+      post :create_project
+    end
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
