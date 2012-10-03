@@ -5,5 +5,9 @@ jQuery(document).ready(function($) {
 	  e.preventDefault();
 	  $(this).tab('show');
 	})
+
+	// Token input
+	$("#select_project").tokenInput("dashboard/user_projects");
+	$("#select_users").tokenInput("users/index");
 	
 });
