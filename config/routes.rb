@@ -1,4 +1,6 @@
 NavigationTracker::Application.routes.draw do
+  get "dashboard_controller/index"
+
   devise_for :users
 
   root :to => 'static_pages#home'
@@ -11,6 +13,8 @@ NavigationTracker::Application.routes.draw do
   resources :projects
 
   resources :users
+
+  resources :dashboard
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

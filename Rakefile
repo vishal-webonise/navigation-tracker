@@ -6,11 +6,11 @@ require File.expand_path('../config/application', __FILE__)
 
 NavigationTracker::Application.load_tasks
 
-# rake app:add_admin_user
-desc 'Add Admin user'
+# rake app:create_admin_user
+desc 'Create Admin user'
 namespace :app do
-    task :add_admin_user => :environment do
-      user = User.create!(name: 'Admin', email: 'admin@analytics.com', login_type: 'admin', password: 'analytics2012')
+    task :create_admin_user => :environment do
+      user = User.create!(first_name: 'Site', last_name: 'Admin', email: 'admin@analytics.com', login_type: 'admin', password: 'analytics12')
       user.save
     end
 end

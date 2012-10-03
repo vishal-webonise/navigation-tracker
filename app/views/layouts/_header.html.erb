@@ -4,7 +4,7 @@
       <a href="<%= root_path %>" id="logo"><i class='icon-eye-open'></i> Navigation Tracker</a>
        <nav>
         <ul class="nav pull-right">
-          <li><%= link_to "Home", root_path %></li>
+          <li><%= link_to "Fetatures", '#' %></li>
           <% if user_signed_in? %>
             <% if is_admin? %>
               <li><%= link_to "Users", users_path %></li>
@@ -12,7 +12,7 @@
             <% end %>
             <li id="fat-menu" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                Account <b class="caret"></b>
+                <%= "#{current_user.first_name} #{current_user.last_name}" %> <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
                 <li>
@@ -29,7 +29,10 @@
             </li>
           <% else %>
             <li>
-              <%= link_to "Sign in", new_user_session_path %>
+                <%= link_to "Register", new_user_registration_path %>
+            </li>
+            <li>
+              <%= link_to "Login", new_user_session_path %>
             </li>
           <% end %>
         </ul>

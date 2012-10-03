@@ -3,6 +3,8 @@
 <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post, :class => 'form-horizontal' }) do |f| %>
   <%= devise_error_messages! %>
 
+  <p>Enter your e-mail and we'll send you a link to reset yur password.</p><br>
+
   <div class="control-group">
     <%= f.label :email, :class => 'control-label' %>
     <div class="controls">
@@ -12,7 +14,7 @@
   </div>
 
   <div class="form-actions">
-    <%= f.submit "Reset Password", :class => 'btn btn-primary' %>
+    <%= f.submit "Send E-mail", :class => 'btn btn-primary' %>
   </div>
 <% end %>
 
