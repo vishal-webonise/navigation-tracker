@@ -6,7 +6,9 @@
 <ul class="projects">
   <% @projects.each do |project| %>
       <li>
-        <%= link_to project.name, project %>
+        <%= project.name %>
+        <%= link_to "Update", :controller => "projects", :action => "edit", :id => project.id %>
+        <%= link_to "Delete", :controller => "projects", :action => "destroy", :id => project.id %>
       </li>
   <% end %>
 </ul>
