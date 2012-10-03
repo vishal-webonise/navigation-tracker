@@ -5,3 +5,12 @@
 require File.expand_path('../config/application', __FILE__)
 
 NavigationTracker::Application.load_tasks
+
+# rake app:add_admin_user
+desc 'Add Admin user'
+namespace :app do
+    task :add_admin_user => :environment do
+      user = User.create!(name: 'Admin', email: 'admin@analytics.com', login_type: 'admin', password: 'analytics2012')
+      user.save
+    end
+end
