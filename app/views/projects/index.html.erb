@@ -1,8 +1,6 @@
 
 <%= link_to "Create New Project", :controller => "projects", :action => "new", :id => @project %>
-
 <h1>All projects</h1>
-
 <ul class="projects">
   <% @projects.each do |project| %>
       <li>
@@ -13,9 +11,4 @@
   <% end %>
 </ul>
 
-<%= form_tag(search_path, :method => 'get') do %>
-
-    <%= text_field_tag(:q, params[:q]) %>
-
-<% end %>
 

@@ -1,12 +1,7 @@
 class ProjectsController < ApplicationController
 
-  def new
-    @project=Project.new
-
-  end
-
   def create
-    @project = current_user.projects.build(params[:project])
+    @project = Project.new(params[:project])
     if @project.save
       flash[:success] = "Project created successfully"
       redirect_to projects_path
@@ -15,7 +10,7 @@ class ProjectsController < ApplicationController
   end
 
   def edit
-    @project= Project.find(params[:id])
+    @project = Project.find(params[:id])
     @title = "Edit user"
   end
 
@@ -24,6 +19,8 @@ class ProjectsController < ApplicationController
     if @project.update_attributes(params[:project])
       flash[:success] = "Project updated."
       redirect_to projects_path
+
+
     end
   end
 
@@ -32,7 +29,7 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    @project=Project.find(params[:id])
+    @project = Project.find(params[:id])
     @project.destroy
     flash[:success] = "Project destroyed."
     redirect_to projects_path
@@ -48,7 +45,6 @@ class ProjectsController < ApplicationController
       @projects.each do |p|
         data={:id=> p.id ,:name=> p.name}
         format.json{render :json => @data }
-
       end
     end
   end

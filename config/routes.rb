@@ -12,12 +12,18 @@ NavigationTracker::Application.routes.draw do
 
   resources :projects
 
+  resources :users do
+    member do
+      post :create_project
+    end
+  end
+
   resources :users
 
   resources :dashboard do
     collection do
       post :create_project
-      get :user_projects
+      #get :user_projects
     end
   end
 
