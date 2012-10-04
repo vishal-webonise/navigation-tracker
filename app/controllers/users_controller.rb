@@ -6,11 +6,17 @@ class UsersController < ApplicationController
 
   def index
   	@users = User.all
-    query = params[:q]
-    @assign_users = User.where("first_name LIKE ?", "%#{query}%")
-    respond_to do |format|
-      format.json { render :json => @assign_users }
-      format.html { render :index }
+
+    if !params[:q].nil?
+      query = params[:q]
+      @assign_users = User.where("first_name LIKE  ? OR last_name LIKE ?", "%#{query}%", "%#{query}%")
+      respond_to do |format|
+        format.json { render :json => @assign_users.as_json(:only => [:id, :first_name, :last_name]) }
+      end
+    else
+      respond_to do |format|
+        format.html { render :index }
+      end
     end
   end
 

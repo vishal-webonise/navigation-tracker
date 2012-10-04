@@ -5,19 +5,13 @@ NavigationTracker::Application.routes.draw do
 
   root :to => 'static_pages#home'
   get "static_pages/home"
-  #get "projects/tags" => "products#tags", :as => :tags
-
-
-  match "projects/search" =>'projects#search', :as => :search
 
   resources :projects
 
-
-
   resources :dashboard do
     collection do
-      post :create_project
       get :user_projects
+      post :assign_project_users, :as => :assign_project_users_from
     end
   end
 
@@ -27,8 +21,6 @@ NavigationTracker::Application.routes.draw do
 
     end
   end
-
-
 
 
   # The priority is based upon order of creation:

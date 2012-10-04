@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   
   before_save :default_values
   after_create :send_welcome_email
-  
+
   private
 
     def default_values
