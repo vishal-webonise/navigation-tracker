@@ -28,6 +28,7 @@
     <%= f.label :password, :class => 'control-label' %>
     <div class="controls">
       <%= f.password_field :password, :autocomplete => "off" %>
+      <span class="help-inline">(Password needs to be alpha numeric)</span>
     </div>
   </div>
 
@@ -35,6 +36,7 @@
     <%= f.label :password_confirmation, :class => 'control-label' %>
     <div class="controls">
       <%= f.password_field :password_confirmation %>
+      <span class="help-inline">(Password needs to be alpha numeric)</span>
     </div>
   </div>
 
