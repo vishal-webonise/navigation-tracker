@@ -3,10 +3,10 @@ class Project < ActiveRecord::Base
 
   attr_accessible :name, :domain_name, :domain_url
 
-  validates :name, :presence => true , :length=> { :maximum => 50 } ,:uniqueness => true
+  #validates :name, :presence => true , :length=> { :maximum => 50 } ,:uniqueness => true ,:on => :create
 
-  validates :domain_name, :presence=>true ,:uniqueness => true
-  validates :domain_url, :presence=>true ,:uniqueness => true
+ # validates :domain_name, :presence=>true ,:uniqueness => true ,:on => :create
+  #validates :domain_url, :presence=>true ,:uniqueness => true  ,:on => :create
 
 
   has_many :users, through: :user_project

@@ -1,0 +1,31 @@
+<h1>Tracking code</h1>
+<%= link_to "Dashboard",dashboard_index_path%>
+<hr>
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#track_project">Tracking code</a></li>
+
+</ul>
+<div class="tab-content">
+  <div class="tab-pane active" id="track_project">
+    Below is a code you have to include in your pages inorder to track sites.
+    <pre>
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-XXXXX-X']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+    </script>
+    </pre>
+  </div>
+</div>
+
+
+
+
