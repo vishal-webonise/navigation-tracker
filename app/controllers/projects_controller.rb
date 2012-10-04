@@ -1,8 +1,9 @@
 class ProjectsController < ApplicationController
 
   def create
-    @project = Project.new(params[:project])
+    @project =current_user.projects.build(params[:project])
     if @project.save
+      current_user.projects << @project
       flash[:success] = "Project created successfully"
       redirect_to projects_path
 
@@ -19,13 +20,13 @@ class ProjectsController < ApplicationController
     if @project.update_attributes(params[:project])
       flash[:success] = "Project updated."
       redirect_to projects_path
-
-
     end
   end
 
   def show
     @project = Project.find(params[:id])
+
+
   end
 
   def destroy

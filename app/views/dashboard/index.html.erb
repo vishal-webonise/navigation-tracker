@@ -1,8 +1,9 @@
-<h1>Dashboard</h1>
+<h1 xmlns="http://www.w3.org/1999/html">Dashboard</h1>
 <hr>
 <ul class="nav nav-tabs">
   <li class="active"><a href="#new_project">Add new project</a></li>
   <li><a href="#all_projects">My Projects</a></li>
+
   <li><a href="#assign_users">Assign Users</a></li>
 </ul>
  
@@ -14,6 +15,16 @@
   </div>
   <div class="tab-pane" id="all_projects">
 
+    <% @user.projects.each do |project| %>
+        <% unless project.new_record?%>
+        <tr>
+          <%= project.name %>
+          <%= link_to "Show",project_path(project.id) %>
+          <%= link_to "Update", :controller => "projects", :action => "edit", :id => project.id %>
+        </tr>
+            <% end %>
+
+    <% end %>
   </div>
   <div class="tab-pane" id="assign_users">
   	<%#= render partial: 'assign_project_users' %>

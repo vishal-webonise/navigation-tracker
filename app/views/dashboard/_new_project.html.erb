@@ -1,5 +1,5 @@
 <%#= @project.inspect %>
-<%= form_for(@project, :url => create_project_dashboard_index_path, :html => { :method => :post, :class => 'form-horizontal' }) do |f| %>
+<%= form_for(@project, :url =>  create_project_users_path, :html => { :method => :post, :class => 'form-horizontal' }) do |f| %>
 
   <div class="control-group">
     <%= f.label :name, :class => 'control-label' %>

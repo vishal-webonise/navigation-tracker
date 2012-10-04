@@ -9,9 +9,12 @@ class DashboardController < ApplicationController
     if @project.save
     	current_user.projects << @project
       flash[:success] = "Project created successfully"
-      redirect_to :back
+      redirect_to projects_path
+    #redirect_to :back
     end
   end
+
+
 
   def user_projects
     query = params[:q]
@@ -20,4 +23,6 @@ class DashboardController < ApplicationController
       format.json { render :json => @user_projects }
     end
   end
+
+
 end
