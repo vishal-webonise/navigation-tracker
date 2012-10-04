@@ -8,7 +8,7 @@ NavigationTracker::Application.routes.draw do
 
   resources :projects
 
-  resources :users
+
 
   resources :dashboard do
     collection do
@@ -17,6 +17,16 @@ NavigationTracker::Application.routes.draw do
       post :assign_project_users, :as => :assign_project_users_from
     end
   end
+
+  resources :users do
+    collection do
+      post :create_project
+
+    end
+  end
+
+
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
