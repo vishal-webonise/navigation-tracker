@@ -1,6 +1,7 @@
 <h1>Update Project</h1>
 <hr>
 <%= form_for(@project) do |p| %>
+    <%= render 'shared/error_messages', :object => p.object %>
 
     <div class="control-group">
       <%= p.label :Name ,:class => 'control-label' %>
@@ -12,15 +13,15 @@
     <div class="control-group">
       <%= p.label :Domain ,:class => 'control-label' %>
       <div class="controls">
-      <%= p.text_field :domain %>
+      <%= p.text_field :domain_name %>
     </div>
     </div>
 
 
     <div class="control-group">
-      <%= p.label :Git_URL ,:class => 'control-label' %>
+      <%= p.label :Domain_URL ,:class => 'control-label' %>
       <div class="controls">
-      <%= p.text_field :git_url %>
+      <%= p.text_field :domain_url %>
     </div>
     </div>
 

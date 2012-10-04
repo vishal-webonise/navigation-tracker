@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+
   before_filter :authenticate_user!
   before_filter :user_signed_in?
   before_filter :admin_user, only: [:destroy]
@@ -24,8 +25,10 @@ class UsersController < ApplicationController
     if @project.save
       current_user.projects << @project
       flash[:success] = "Project created successfully"
+      render 'projects/code'
+
      # redirect_to root_path
-      redirect_to :back
+     # redirect_to :back
     end
   end
 
