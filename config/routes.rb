@@ -5,10 +5,6 @@ NavigationTracker::Application.routes.draw do
 
   root :to => 'static_pages#home'
   get "static_pages/home"
-  #get "projects/tags" => "products#tags", :as => :tags
-
-
-  match "projects/search" =>'projects#search', :as => :search
 
   resources :projects
 
@@ -18,6 +14,7 @@ NavigationTracker::Application.routes.draw do
     collection do
       post :create_project
       get :user_projects
+      post :assign_project_users, :as => :assign_project_users_from
     end
   end
 
