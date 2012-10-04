@@ -12,4 +12,16 @@ module UsersHelper
 		image_tag(gravatar_url, alt: "#{user.first_name} #{user.last_name}", class: 'gravatar img-polaroid')
 	end
 
+	def resource_name
+    :user
+  end
+ 
+  def resource
+    @resource ||= User.new
+  end
+ 
+  def devise_mapping
+    @devise_mapping ||= Devise.mappings[:user]
+  end
+
 end

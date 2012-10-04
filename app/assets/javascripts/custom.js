@@ -30,7 +30,7 @@ jQuery(document).ready(function() {
 	 	{
 	 		tokenLimit: 1,
 	 		tokenFormatter: function(item) { return "<li class='project_users' id='" + item.id + "'>" + item.name + "</li>" },
-	 		onAdd: project_users($('.project_users').attr('id')),
+	 		onAdd: function(item){ project_users(item.id)},
 	 		onDelete: clear_project_users,
 	 	}
  	);
