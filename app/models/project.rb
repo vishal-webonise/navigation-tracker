@@ -1,8 +1,9 @@
 class Project < ActiveRecord::Base
   self.include_root_in_json = false
-  attr_accessible :domain, :git_url, :name, :project_mgt_tool
+  attr_accessible :name, :domain_name, :domain_url
 
-  has_and_belongs_to_many :users
+  has_many :users, through: :user_project
+  has_many :user_project
   has_many :analytic_data
 
 

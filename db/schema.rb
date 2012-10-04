@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121001053720) do
+ActiveRecord::Schema.define(:version => 20121004063931) do
 
   create_table "analytic_data", :force => true do |t|
     t.integer  "project_id"
@@ -23,20 +23,21 @@ ActiveRecord::Schema.define(:version => 20121001053720) do
 
   create_table "projects", :force => true do |t|
     t.string   "name"
-    t.string   "domain"
-    t.string   "git_url"
-    t.string   "project_mgt_tool"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.string   "domain_name"
+    t.string   "domain_url"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
-  create_table "projects_users", :id => false, :force => true do |t|
+  create_table "user_projects", :id => false, :force => true do |t|
     t.integer "user_id"
     t.integer "project_id"
+    t.boolean "is_owner",   :default => true
   end
 
-  add_index "projects_users", ["project_id", "user_id"], :name => "index_projects_users_on_project_id_and_user_id"
-  add_index "projects_users", ["user_id", "project_id"], :name => "index_projects_users_on_user_id_and_project_id"
+  add_index "user_projects", ["project_id", "user_id"], :name => "index_user_projects_on_project_id_and_user_id"
+  add_index "user_projects", ["user_id", "project_id", "is_owner"], :name => "index_user_projects_on_user_id_and_project_id_and_is_owner"
+  add_index "user_projects", ["user_id", "project_id"], :name => "index_user_projects_on_user_id_and_project_id"
 
   create_table "users", :force => true do |t|
     t.string   "first_name"
