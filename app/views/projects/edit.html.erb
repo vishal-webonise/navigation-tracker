@@ -1,22 +1,30 @@
-<h1>Project Details</h1>
+<h1>Update Project</h1>
+<hr>
 <%= form_for(@project) do |p| %>
-    <div class="field">
-      <%= p.label :Name  %>
+
+    <div class="control-group">
+      <%= p.label :Name ,:class => 'control-label' %>
+      <div class="controls">
       <%= p.text_field :name %>
     </div>
-    <div class="field">
-      <%= p.label :Domain %>
+    </div>
+
+    <div class="control-group">
+      <%= p.label :Domain ,:class => 'control-label' %>
+      <div class="controls">
       <%= p.text_field :domain %>
     </div>
-    <div class="field">
-      <%= p.label :Git_URL %>
+    </div>
+
+
+    <div class="control-group">
+      <%= p.label :Git_URL ,:class => 'control-label' %>
+      <div class="controls">
       <%= p.text_field :git_url %>
     </div>
-    <div class="field">
-      <%= p.label :Project_Management_Tool  %>
-      <%= p.text_field :project_mgt_tool %>
     </div>
-    <div class="actions">
-      <%= p.submit "Update" %>
+
+    <div class="form-actions">
+      <%= p.submit "Update" ,:class => 'btn btn-primary'%>
     </div>
 <% end %>

@@ -13,12 +13,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def show_projects
-    @user=User.find params[:id]
-    @projects =@user.projects
-  end
-
-
   def create_project
     @project = current_user.projects.build(params[:project])
     if @project.save
@@ -28,8 +22,6 @@ class UsersController < ApplicationController
       redirect_to :back
     end
   end
-
-
 
   def show
   	@user = User.find(params[:id])
