@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
 
   validates :first_name, :last_name, :password, presence: true
   validates :password, length: { minimum: 6, maximum: 12 }
+  validates_format_of :password, :with => /^[a-zA-Z0-9]+$/
   
   has_many :projects, through: :user_project
   has_many :user_project
