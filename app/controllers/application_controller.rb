@@ -9,6 +9,10 @@ class ApplicationController < ActionController::Base
 	  end
 
 	  def after_sign_in_path_for(resource_or_scope)
-	    dashboard_index_path
+	    if is_admin?
+	    	admin_dashboard_index_path
+	    else
+	    	dashboard_index_path
+	    end
 	  end
 end

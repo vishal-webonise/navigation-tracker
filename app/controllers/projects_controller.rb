@@ -6,7 +6,6 @@ class ProjectsController < ApplicationController
       current_user.projects << @project
       flash[:success] = "Project created successfully"
       redirect_to projects_path
-
     end
   end
 
@@ -25,8 +24,6 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
-
-
   end
 
   def destroy
@@ -40,13 +37,20 @@ class ProjectsController < ApplicationController
     @projects=Project.all
   end
 
-  def search
-    @projects = Project.where("name LIKE ?", "%params[:q]%")
-    respond_to do |format|
-      @projects.each do |p|
-        data={:id=> p.id ,:name=> p.name}
-        format.json{render :json => @data }
-      end
+  def tracking_code
+    @project = Project.find(params[:id])
+    if project_owner?(@project) || is_admin?
+      render :tracking_code
+    else
+      redirect_to :back
+    end
+  end
+
+  def project_owner?(project)
+    if !project.user_projects.where('user_id = ? AND is_owner = ?', current_user.id, true).blank?
+      return true
+    else
+      return false
     end
   end
 end

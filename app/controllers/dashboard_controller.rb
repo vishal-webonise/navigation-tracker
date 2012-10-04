@@ -1,9 +1,18 @@
 class DashboardController < ApplicationController
+
   def index
-  	@user = current_user
-    @users = User.all
-    @user_list = User.all.to_json(:only => [:id, :first_name, :last_name]) 
-  	@project = @user.projects.build
+    if is_admin?
+      redirect_to admin_dashboard_index_path
+    else
+    	@user = current_user
+      @users = User.all
+      @user_list = User.all.to_json(:only => [:id, :first_name, :last_name]) 
+    	@project = @user.projects.build
+    end
+  end
+
+  def admin
+
   end
 
   def user_projects

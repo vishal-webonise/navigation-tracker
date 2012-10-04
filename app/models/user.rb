@@ -8,12 +8,13 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :login_type, :first_name, :last_name, :encrypted_password
 
-  validates :first_name, :last_name, :password, presence: true
+  validates :first_name, :last_name, :email, :password, presence: true
   validates :password, length: { minimum: 6, maximum: 12 }
   validates_format_of :password, :with => /^[a-zA-Z0-9]+$/
+  validates_uniqueness_of :email, :on => :create, :message => "This e-mail is already taken"
   
-  has_many :projects, through: :user_project
-  has_many :user_project
+  has_many :user_projects, :dependent => :destroy
+  has_many :projects, :through => :user_projects
   
   before_save :default_values
   after_create :send_welcome_email

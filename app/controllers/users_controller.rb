@@ -14,8 +14,12 @@ class UsersController < ApplicationController
         format.json { render :json => @assign_users.as_json(:only => [:id, :first_name, :last_name]) }
       end
     else
-      respond_to do |format|
-        format.html { render :index }
+      if is_admin?
+        respond_to do |format|
+          format.html { render :index }
+        end
+      else
+        redirect_to :dashboard_index
       end
     end
   end
@@ -25,10 +29,7 @@ class UsersController < ApplicationController
     if @project.save
       current_user.projects << @project
       flash[:success] = "Project created successfully"
-      render 'projects/code'
-
-     # redirect_to root_path
-     # redirect_to :back
+      redirect_to tracking_code_for_project_path(current_user.projects.last)
     end
   end
 

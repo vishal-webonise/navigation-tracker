@@ -1,17 +1,20 @@
 NavigationTracker::Application.routes.draw do
-  get "dashboard_controller/index"
-
+  
   devise_for :users
 
   root :to => 'static_pages#home'
-  get "static_pages/home"
 
-  resources :projects
+  resources :projects do 
+    member do
+      get :tracking_code, :as => :tracking_code_for
+    end
+  end
 
   resources :dashboard do
     collection do
       get :user_projects
       post :assign_project_users, :as => :assign_project_users_from
+      get :admin
     end
   end
 

@@ -18,8 +18,10 @@
   <div class="control-group">
     <%= f.label :domain_url, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :domain_url %>
-
+      <div class="input-prepend">
+        <span class="add-on">http://</span>
+        <%= f.text_field :domain_url, :placeholder => 'testing.oklisten.com' %>
+      </div>
     </div>
   </div>
 
