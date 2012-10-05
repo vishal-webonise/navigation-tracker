@@ -26,15 +26,16 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
   end
 
+
   def destroy
-    @project = Project.find(params[:id])
-    @project.destroy
-    flash[:success] = "Project destroyed."
-    redirect_to projects_path
+    @project = Project.find(params[:id]).destroy
+    flash[:success] = "Project --> #{@project.name} is successfully deleted!"
+    redirect_to :back
   end
 
+
   def index
-    @projects=Project.all
+    @projects = Project.paginate(:page => params[:page], :per_page => 10)
   end
 
   def tracking_code

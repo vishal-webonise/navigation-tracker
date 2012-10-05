@@ -28,9 +28,9 @@
             <tr>
               <td>
                 <%= project.domain_url %><br>
-                <%= link_to "Edit Project", edit_project_path(project), class: 'btn btn-mini' %>
-                <%= link_to "Get Tracking Code", tracking_code_for_project_path(project), class: 'btn btn-mini' %>
-                <%= link_to "View Stats Details", project_path(project), class: 'btn btn-mini' %>
+                <%= link_to "Edit Project", edit_project_path(project) %>
+                <%= link_to "Get Tracking Code", tracking_code_for_project_path(project) %>
+                <%= link_to "View Stats Details", project_path(project)%>
               </td>
               <td>
                 0
