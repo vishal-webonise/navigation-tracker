@@ -13,11 +13,5 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
+//= require rails.validations
 //= require_tree .
-
-$(document).ready(function () {
-    $("#q").tokenInput("projects/search.json");
-});
-
-
-

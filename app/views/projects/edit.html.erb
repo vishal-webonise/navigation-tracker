@@ -1,6 +1,6 @@
 <h1>Update Project</h1>
 <hr>
-<%= form_for(@project) do |p| %>
+<%= form_for(@project, :validate => true) do |p| %>
     <%= render 'shared/error_messages', :object => p.object %>
 
     <div class="control-group">

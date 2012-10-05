@@ -24,6 +24,8 @@ gem 'bootstrap-sass', '2.1.0'
 
 gem 'jquery-rails'
 
+gem 'client_side_validations'
+
 gem 'devise'
 
 # To use ActiveModel has_secure_password

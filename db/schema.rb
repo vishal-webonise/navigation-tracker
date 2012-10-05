@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(:version => 20121004063931) do
     t.datetime "updated_at",  :null => false
   end
 
-  create_table "user_projects", :id => false, :force => true do |t|
+  create_table "user_projects", :force => true do |t|
     t.integer "user_id"
     t.integer "project_id"
     t.boolean "is_owner",   :default => true
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(:version => 20121004063931) do
 
   add_index "user_projects", ["project_id", "user_id"], :name => "index_user_projects_on_project_id_and_user_id"
   add_index "user_projects", ["user_id", "project_id", "is_owner"], :name => "index_user_projects_on_user_id_and_project_id_and_is_owner"
-  add_index "user_projects", ["user_id", "project_id"], :name => "index_user_projects_on_user_id_and_project_id"
+  add_index "user_projects", ["user_id", "project_id"], :name => "index_user_projects_on_user_id_and_project_id", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "first_name"

@@ -35,6 +35,13 @@ class ProjectsController < ApplicationController
 
   def index
     @projects=Project.all
+    if is_admin?
+      respond_to do |format|
+        format.html { render :index }
+      end
+    else
+      redirect_to :dashboard_index
+    end
   end
 
   def tracking_code

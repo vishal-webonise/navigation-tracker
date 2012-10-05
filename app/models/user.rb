@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email, :on => :create, :message => "This e-mail is already taken"
   
   has_many :user_projects, :dependent => :destroy
-  has_many :projects, :through => :user_projects
+  has_many :projects, :through => :user_projects, :uniq => true
   
   before_save :default_values
   after_create :send_welcome_email

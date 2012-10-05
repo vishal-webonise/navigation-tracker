@@ -6,24 +6,26 @@ jQuery(document).ready(function() {
 	  $(this).tab('show');
 	})
 
-	// Token Input
-
+	/* START Token Input */
 	function project_users(project_id) {
-		console.log(project_id);
-		project_users_ids = $.post("dashboard/project_users", {project_id: project_id}, function(response) {return response}, 'JSON')
-		$("#project_users").tokenInput( "users",
-			{ 
-				propertyToSearch: "first_name",
-				// prePopulate:$.parseJSON($("#project_users").attr("rel")),
-				prePopulate: project_users_ids,
-				preventDuplicates: true,
-				tokenFormatter: function(item) { return "<li class='project_users' id='" + item.id + "'>" + item.first_name + " " + item.last_name + "</li>" },
-			}
-		);
+		project_users_ids = $.get("dashboard/project_users", {project_id: project_id}, function(data) {
+			project_users_ids = JSON.stringify(data);
+			//console.log(project_users_ids);
+			$("#project_users").tokenInput( "users",
+				{ 
+					propertyToSearch: "first_name",
+					prePopulate: $.parseJSON(project_users_ids),
+					preventDuplicates: true,
+					tokenFormatter: function(item) { return "<li class='project_users' id='" + item.id + "'>" + item.first_name + " " + item.last_name + "</li>" },
+				}
+			);
+
+		}, 'json');
 	}
 
 	function clear_project_users() {
-	 	$("#project_users").tokenInput("clear");
+	 	$("#project_users").tokenInput("remove");
+	 	// $('#token-input-project_users:first').parent().parent().remove()
 	}
 
 	$("#user_project").tokenInput("dashboard/user_projects",
@@ -35,4 +37,6 @@ jQuery(document).ready(function() {
 	 	}
  	);
 
-});
+ 	/* END Token Input */
+
+}); // END documnet-ready

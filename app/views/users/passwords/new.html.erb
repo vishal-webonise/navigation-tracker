@@ -1,7 +1,7 @@
 <h1>Lost your password?</h1>
 <hr>
-<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post, :class => 'form-horizontal' }) do |f| %>
-  <%= devise_error_messages! %>
+<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post, :class => 'form-horizontal' }, :validate => true) do |f| %>
+  <%#= devise_error_messages! %>
 
   <p>Enter your e-mail and we'll send you a link to reset yur password.</p><br>
 

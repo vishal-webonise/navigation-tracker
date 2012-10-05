@@ -13,6 +13,7 @@ NavigationTracker::Application.routes.draw do
   resources :dashboard do
     collection do
       get :user_projects
+      get :project_users
       post :assign_project_users, :as => :assign_project_users_from
       get :admin
     end

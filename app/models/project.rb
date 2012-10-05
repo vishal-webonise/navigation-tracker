@@ -6,6 +6,6 @@ class Project < ActiveRecord::Base
 	validates :name, :domain_name, :domain_url, :uniqueness => true
 
 	has_many :user_projects, :dependent => :destroy
-	has_many :users, :through => :user_projects
+	has_many :users, :through => :user_projects, :uniq => true
 	has_many :analytic_data
 end
