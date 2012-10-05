@@ -1,14 +1,67 @@
 
-<%= link_to "Create New Project", :controller => "projects", :action => "new", :id => @project %>
-<h1>All projects</h1>
-<ul class="projects">
-  <% @projects.each do |project| %>
-      <li>
-        <%= project.name %>
-        <%= link_to "Show", :controller => "projects", :action => "show", :id => project.id %>
-        <%= link_to "Update", :controller => "projects", :action => "edit", :id => project.id %>
-      </li>
-  <% end %>
-</ul>
 
+<div class="row">
+  <aside class="span3">
+    <%= render partial: 'shared/index_sidebar_content' %>
+  </aside>
+
+<div class="span9">
+  <section class="page-header">
+
+  </section>
+  <% if @projects.any? %>
+      <table class="table table-striped">
+        <tr><h3><center>Projects on the Analytics</center></h3></tr>
+        <thread>
+          <tr>
+            <th>Project Name</th>
+            <th>     </th>
+            <th>Domain Name</th>
+            <th>     </th>
+            <th>Domain URL</th>
+            <th>     </th>
+            <th>Actions</th>
+            <th>     </th>
+            <th></th>
+            <th></th>
+
+          </tr>
+        </thread>
+        <tbody>
+        <% @projects.each do |project| %>
+            <tr>
+              <td><%= project.name %><td>
+
+              <td><%= project.domain_name %><td>
+              <td><%= project.domain_url %><td>
+              <td>
+                <%= link_to "View", project_path(project)%>
+              </td>
+              <td>
+                <%= link_to "Edit", edit_project_path(project) %>
+              </td>
+              <td></td>
+              <td>
+                <%= link_to "Delete", project_path(project), :data => { :confirm => "Are you sure?" }, :method => :delete %>
+              </td>
+
+            </tr>
+        <% end %>
+        </tbody>
+
+      </table>
+
+  <% else %>
+      <div class="well well-large">
+        There are no users registered yet!
+      </div>
+  <% end %>
+
+  <%= will_paginate @projects %>
+
+</div>
+
+
+
+</div>
 

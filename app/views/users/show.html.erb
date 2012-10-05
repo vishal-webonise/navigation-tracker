@@ -1,28 +1,21 @@
-<div class="row">
-		<aside class="span2">
-      <section>
-				<a href="<%= user_path(current_user) %>">
-  				<%= gravatar_for @user, size: 52 %>
-				</a>
-				<h1><%= "#{@user.first_name} #{@user.last_name}" %></h1>
-				<span>
-					Projects: <%= @user.projects.count %>
-				</span>
-			</section>
-		</aside>
-	<div class="span10">
-		<section class="page-header">
-			<h3>
-				Projects
-				<small><%= "#{@user.first_name} #{@user.last_name}" %> is currently assigned for <%= @user.projects.count %> projects</small>
-			</h3>
-		</section>
-		<% if @user.projects.any? %>
-			
-		<% else %>
-			<div class="well well-large">
-				This user hasn't assigned for any project yet.
-			</div>
-		<% end %>
-	</div>
-</div>
+
+<h1 xmlns="http://www.w3.org/1999/html">Details of User</h1>
+<hr>
+<tr>
+  <td>
+    <strong>First Name:</strong>
+    <%= @user.first_name %> <br><br>
+  </td>
+</tr>
+<tr>
+  <td>
+    <strong>Last Name:</strong>
+    <%= @user.last_name %> <br><br>
+  </td>
+</tr>
+<tr>
+  <td>
+    <strong>Email-address :</strong>
+    <%= @user.email %> <br><br>
+  </td>
+</tr>

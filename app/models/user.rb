@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 6, maximum: 12 }
   validates_format_of :password, :with => /^[a-zA-Z0-9]+$/
   validates_uniqueness_of :email, :on => :create, :message => "This e-mail is already taken"
-  
+
   has_many :user_projects, :dependent => :destroy
   has_many :projects, :through => :user_projects, :uniq => true
   
@@ -21,12 +21,12 @@ class User < ActiveRecord::Base
 
   private
 
-    def default_values
-      self.login_type ||= 'regular_user'
-    end
+  def default_values
+    self.login_type ||= 'regular_user'
+  end
 
-    def send_welcome_email
-      UserMailer.welcome_email(self).deliver
-    end
+  def send_welcome_email
+    UserMailer.welcome_email(self).deliver
+  end
 
 end
