@@ -12,6 +12,11 @@ class ProjectsController < ApplicationController
   def edit
     @project = Project.find(params[:id])
     @title = "Edit user"
+    if project_owner?(@project) || is_admin?
+      render :edit
+    else
+      redirect_to :dashboard_index
+    end
   end
 
   def update
@@ -24,6 +29,11 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
+    if project_owner?(@project) || is_admin?
+      render :show
+    else
+      redirect_to :dashboard_index
+    end
   end
 
 

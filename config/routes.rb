@@ -20,9 +20,11 @@ NavigationTracker::Application.routes.draw do
   end
 
   resources :users do
+    member do
+      put :update_password
+    end
     collection do
       post :create_project
-
     end
   end
 

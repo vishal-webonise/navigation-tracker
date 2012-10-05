@@ -5,6 +5,6 @@
   <div class="tab-pane active" id="tracking_code">
     <p>To begin recording statistics, add the following code to your website. You should add the code to every page of your site, somewhere in the body of the page.</p>
     <br>
-    <%= render :partial => 'shared/tracking_code' %>
+    <%= render :partial => 'shared/tracking_code', :locals => { project: @project } %>
   </div>
 </div>

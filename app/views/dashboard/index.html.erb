@@ -7,12 +7,11 @@
  
 <div class="tab-content">
   <div class="tab-pane active" id="new_project">
-  	<%= render partial: 'new_project', 
-  			:locals => { :project => @project } 
-	%>
+    <%= render partial: 'new_project', 
+    :locals => { :project => @project } 
+     %>
   </div>
   <div class="tab-pane" id="all_projects">
-
     <table class="table table-striped">
       <thead>
       <tr>
@@ -48,7 +47,7 @@
     </table>
   </div>
   <div class="tab-pane" id="assign_users">
-  	<%= render partial: 'assign_project_users', :locals => { user_list: @user_list } %>
+    <%= render partial: 'assign_project_users', :locals => { user_list: @user_list } %>
   </div>
 </div>
  

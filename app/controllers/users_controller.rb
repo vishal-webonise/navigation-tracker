@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
-  before_filter :authenticate_user!
   before_filter :user_signed_in?
+  before_filter :authenticate_user!
   before_filter :admin_user, only: [:destroy]
 
   def index
@@ -23,6 +23,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+    @user = User.find(params[:id])
+  end
+
   def create_project
     @project = current_user.projects.build(params[:project])
     if @project.save
@@ -31,15 +35,21 @@ class UsersController < ApplicationController
       redirect_to tracking_code_for_project_path(current_user.projects.last)
     end
   end
-
-  def show
-    @user = User.find(params[:id])
-  end
-
+  
   def destroy
   	@user = User.find(params[:id]).destroy
   	flash[:success] = "User --> #{@user.first_name} is successfully deleted!"
   	redirect_to :back
+  end
+
+  def update_password
+    if current_user.valid_password?(params[:user][:current_password])
+      if current_user.update_with_password(params[:user])
+        flash[:success] = "Password updated."
+        UserMailer.change_password_email(current_user).deliver
+        redirect_to :back
+      end
+    end
   end
 
   private

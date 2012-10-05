@@ -6,51 +6,31 @@
   </aside>
 
 <div class="span9">
-  <section class="page-header">
-
-  </section>
   <% if @projects.any? %>
       <table class="table table-striped">
         <tr><h3><center>Projects on the Analytics</center></h3></tr>
         <thread>
           <tr>
             <th>Project Name</th>
-            <th>     </th>
             <th>Domain Name</th>
-            <th>     </th>
             <th>Domain URL</th>
-            <th>     </th>
             <th>Actions</th>
-            <th>     </th>
-            <th></th>
-            <th></th>
-
           </tr>
         </thread>
         <tbody>
         <% @projects.each do |project| %>
             <tr>
-              <td><%= project.name %><td>
-
-              <td><%= project.domain_name %><td>
-              <td><%= project.domain_url %><td>
+              <td><%= project.name %></td>
+              <td><%= project.domain_name %></td>
+              <td><%= project.domain_url %></td>
               <td>
                 <%= link_to "View", project_path(project)%>
-              </td>
-              <td>
-                <%= link_to "Edit", edit_project_path(project) %>
-              </td>
-              <td></td>
-              <td>
                 <%= link_to "Delete", project_path(project), :data => { :confirm => "Are you sure?" }, :method => :delete %>
               </td>
-
             </tr>
         <% end %>
         </tbody>
-
       </table>
-
   <% else %>
       <div class="well well-large">
         There are no users registered yet!
