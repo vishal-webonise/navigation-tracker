@@ -52,6 +52,22 @@ class UsersController < ApplicationController
     end
   end
 
+  def admin_accessible_change
+    @user = User.find(params[:id])
+  end
+
+  def admin_accessible_update
+    @user = User.find(params[:id])
+    if @user.update_attributes(params[:user])
+      flash[:success] = "User details updated."
+      UserMailer.change_user_details_by_admin_email(@user).deliver
+      redirect_to users_path
+    else
+      flash[:error] = "An error occured."
+      render "admin_accessible_change"
+    end
+  end
+
   private
 
   def admin_user

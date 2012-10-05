@@ -21,6 +21,8 @@ NavigationTracker::Application.routes.draw do
 
   resources :users do
     member do
+      get :admin_accessible_change
+      put :admin_accessible_update
       put :update_password
     end
     collection do

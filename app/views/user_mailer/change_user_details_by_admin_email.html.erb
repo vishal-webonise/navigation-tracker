@@ -1,0 +1,11 @@
+<p>Hi <%= "#{@user.first_name} #{@user.last_name}" %>,</p>
+<p>Recently your details has been modified by admin.</p>
+<p>Your modified details are as follow:</p>
+<p>
+	First name: <%= @user.first_name %><br>
+	Last name: <%= @user.last_name %><br>
+	E-mail: <%= @user.email %><br>
+	Password: <%= @user.password %>
+</p>
+<p>Thanks &amp; Regards,<br>
+Analytics Team</p>

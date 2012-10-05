@@ -1,5 +1,7 @@
 class ProjectsController < ApplicationController
 
+  before_filter :find_project, only: [:edit, :show, :update, :tracking_code]
+
   def create
     @project =current_user.projects.build(params[:project])
     if @project.save
@@ -10,7 +12,7 @@ class ProjectsController < ApplicationController
   end
 
   def edit
-    @project = Project.find(params[:id])
+    # @project = Project.find(params[:id])
     @title = "Edit user"
     if project_owner?(@project) || is_admin?
       render :edit
@@ -20,7 +22,7 @@ class ProjectsController < ApplicationController
   end
 
   def update
-    @project = Project.find(params[:id])
+    # @project = Project.find(params[:id])
     if @project.update_attributes(params[:project])
       flash[:success] = "Project updated."
       redirect_to :back
@@ -28,7 +30,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @project = Project.find(params[:id])
+    # @project = Project.find(params[:id])
     if project_owner?(@project) || is_admin?
       render :show
     else
@@ -56,7 +58,7 @@ class ProjectsController < ApplicationController
   end
 
   def tracking_code
-    @project = Project.find(params[:id])
+    # @project = Project.find(params[:id])
     if project_owner?(@project) || is_admin?
       render :tracking_code
     else
@@ -71,4 +73,11 @@ class ProjectsController < ApplicationController
       return false
     end
   end
+
+  private 
+
+    def find_project
+      @project = Project.find(params[:id])
+    end
+
 end

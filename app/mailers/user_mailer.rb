@@ -8,6 +8,11 @@ class UserMailer < ActionMailer::Base
 
   def change_password_email(user)
   	@user = user
-  	mail(:to => user.email, :subject => "Password Changed")
+  	mail(:to => user.email, :subject => "Your Password Changed")
+  end
+
+  def change_user_details_by_admin_email(user)
+  @user = user
+  	mail(:to => user.email, :subject => "Your Details has been Changed")
   end
 end

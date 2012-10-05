@@ -203,6 +203,22 @@ aside {
   margin-right: 10px;
 }
 
+
+ul#admin_sidebar {
+  list-style: none;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  li {
+    border-bottom: 1px solid #ccc;
+    padding: 10px;
+    &:last-child {
+      border-bottom: 0px solid #ccc;
+    }
+  }
+}
+
+
+
 /* home page */
 
 #home_page {
