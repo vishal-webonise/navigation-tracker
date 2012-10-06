@@ -12,7 +12,6 @@ class ProjectsController < ApplicationController
   end
 
   def edit
-    # @project = Project.find(params[:id])
     @title = "Edit user"
     if project_owner?(@project) || is_admin?
       render :edit
@@ -22,7 +21,6 @@ class ProjectsController < ApplicationController
   end
 
   def update
-    # @project = Project.find(params[:id])
     if @project.update_attributes(params[:project])
       flash[:success] = "Project updated."
       redirect_to :back
@@ -30,7 +28,6 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    # @project = Project.find(params[:id])
     if project_owner?(@project) || is_admin?
       render :show
     else
@@ -38,13 +35,11 @@ class ProjectsController < ApplicationController
     end
   end
 
-
   def destroy
     @project = Project.find(params[:id]).destroy
     flash[:success] = "Project --> #{@project.name} is successfully deleted!"
     redirect_to :back
   end
-
 
   def index
     @projects = Project.paginate(:page => params[:page], :per_page => 10)
@@ -58,7 +53,6 @@ class ProjectsController < ApplicationController
   end
 
   def tracking_code
-    # @project = Project.find(params[:id])
     if project_owner?(@project) || is_admin?
       render :tracking_code
     else
@@ -79,5 +73,4 @@ class ProjectsController < ApplicationController
     def find_project
       @project = Project.find(params[:id])
     end
-
 end
