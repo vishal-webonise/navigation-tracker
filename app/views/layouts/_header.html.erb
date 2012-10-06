@@ -14,26 +14,16 @@
               </a>
               <ul class="dropdown-menu">
                 <% if !is_admin? %>
-                  <li>
-                    <%= link_to "My Projects", dashboard_index_path %>
-                  </li>
-                  <li>
-                    <%= link_to "My Profile", edit_user_registration_path %>
-                  </li>
+                  <li><%= link_to "My Projects", dashboard_index_path %></li>
+                  <li><%= link_to "My Profile", edit_user_registration_path %></li>
                   <li class="divider"></li>
                 <% end %>
-                  <li>
-                    <%= link_to "Sign out", destroy_user_session_path, method: "delete" %>
-                  </li>
+                  <li><%= link_to "Sign out", destroy_user_session_path, method: "delete" %></li>
               </ul>
             </li>
           <% else %>
-              <li>
-                <%= link_to "Register", new_user_registration_path %>
-              </li>
-              <li>
-                <%= link_to "Login", new_user_session_path %>
-              </li>
+              <li><%= link_to "Register", new_user_registration_path %></li>
+              <li><%= link_to "Login", new_user_session_path %></li>
           <% end %>
         </ul>
       </nav>

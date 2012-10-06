@@ -1,4 +1,3 @@
-
 <div class="span9">
   <section class="page-header">
     <h1>Projects on Analytics</h1>
@@ -8,24 +7,19 @@
         <thread>
           <tr>
             <th>Project Name</th>
-            <th>     </th>
             <th>Domain Name</th>
-            <th>     </th>
             <th>Domain_URL</th>
-            <th>     </th>
             <th>Actions</th>
           </tr>
         </thread>
         <tbody>
         <% @projects.each do |project| %>
             <tr>
-              <td><%= project.name %><td>
-              <td><%= project.domain %><td>
-              <td><%= project.domain_url %><td>
-
+              <td><%= project.name %></td>
+              <td><%= project.domain %></td>
+              <td><%= project.domain_url %></td>
               <td>
                 <%= link_to "View", user_path(user), class: "btn btn-mini" %>
-
                 <%= link_to "Delete", user_path(user), :data => { :confirm => "Are you sure?" }, :method => :delete, class: "btn btn-mini btn-danger" %>
               </td>
             </tr>
@@ -33,8 +27,8 @@
         </tbody>
       </table>
   <% else %>
-      <div class="well well-large">
-        There are no users registered yet!
-      </div>
+    <div class="well well-large">
+      There are no users registered yet!
+    </div>
   <% end %>
 </div>

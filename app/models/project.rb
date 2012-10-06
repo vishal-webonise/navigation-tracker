@@ -1,4 +1,3 @@
-#WillPaginate.per_page = 10
 class Project < ActiveRecord::Base
   attr_accessible :name, :domain_name, :domain_url
   self.per_page = 10

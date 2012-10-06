@@ -1,24 +1,6 @@
 NavigationTracker::Application.routes.draw do
-  
-  devise_for :users
-
   root :to => 'static_pages#home'
-
-  resources :projects do 
-    member do
-      get :tracking_code, :as => :tracking_code_for
-    end
-  end
-
-  resources :dashboard do
-    collection do
-      get :user_projects
-      get :project_users
-      post :assign_project_users, :as => :assign_project_users_from
-      get :admin
-    end
-  end
-
+  devise_for :users
   resources :users do
     member do
       get :admin_accessible_change
@@ -29,8 +11,19 @@ NavigationTracker::Application.routes.draw do
       post :create_project
     end
   end
-
-
+  resources :dashboard do
+    collection do
+      get :user_projects
+      get :project_users
+      post :assign_project_users, :as => :assign_project_users_from
+      get :admin
+    end
+  end
+  resources :projects do 
+    member do
+      get :tracking_code, :as => :tracking_code_for
+    end
+  end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

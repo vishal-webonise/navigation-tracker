@@ -1,15 +1,12 @@
 <ul class="nav nav-tabs">
   <li class="active"><a href="#new_project">Add new project</a></li>
   <li><a href="#all_projects">My Projects</a></li>
-
   <li><a href="#assign_users">Assign Users</a></li>
 </ul>
  
 <div class="tab-content">
   <div class="tab-pane active" id="new_project">
-    <%= render partial: 'new_project', 
-    :locals => { :project => @project } 
-     %>
+    <%= render partial: 'new_project', :locals => { :project => @project } %>
   </div>
   <div class="tab-pane" id="all_projects">
     <table class="table table-striped">
@@ -31,15 +28,9 @@
                 <%= link_to "Get Tracking Code", tracking_code_for_project_path(project) %>
                 <%= link_to "View Stats Details", project_path(project)%>
               </td>
-              <td>
-                0
-              </td>
-              <td>
-                2
-              </td>
-              <td>
-                2
-              </td>
+              <td>0</td>
+              <td>2</td>
+              <td>2</td>
             </tr>
           <% end %>
         <% end %>

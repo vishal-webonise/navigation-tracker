@@ -1,14 +1,11 @@
-
-
 <div class="row">
   <aside class="span3">
     <%= render partial: 'shared/index_sidebar_content' %>
   </aside>
-
-<div class="span9">
-  <% if @projects.any? %>
+  <div class="span9">
+    <h3><center>Projects on the Analytics</center></h3>
+    <% if @projects.any? %>
       <table class="table table-striped">
-        <tr><h3><center>Projects on the Analytics</center></h3></tr>
         <thread>
           <tr>
             <th>Project Name</th>
@@ -19,29 +16,24 @@
         </thread>
         <tbody>
         <% @projects.each do |project| %>
-            <tr>
-              <td><%= project.name %></td>
-              <td><%= project.domain_name %></td>
-              <td><%= project.domain_url %></td>
-              <td>
-                <%= link_to "View", project_path(project)%>
-                <%= link_to "Delete", project_path(project), :data => { :confirm => "Are you sure?" }, :method => :delete %>
-              </td>
-            </tr>
+          <tr>
+            <td><%= project.name %></td>
+            <td><%= project.domain_name %></td>
+            <td><%= project.domain_url %></td>
+            <td>
+              <%= link_to "View", project_path(project)%>
+              <%= link_to "Delete", project_path(project), :data => { :confirm => "Are you sure?" }, :method => :delete %>
+            </td>
+          </tr>
         <% end %>
         </tbody>
       </table>
-  <% else %>
+    <% else %>
       <div class="well well-large">
-        There are no users registered yet!
+        There are no projects created yet!
       </div>
-  <% end %>
-
-  <%= will_paginate @projects %>
-
-</div>
-
-
-
+    <% end %>
+    <%= will_paginate @projects %>
+  </div>
 </div>
 

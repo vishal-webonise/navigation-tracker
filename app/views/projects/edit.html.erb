@@ -1,31 +1,26 @@
 <h1>Update Project</h1>
 <hr>
 <%= form_for(@project, :validate => true) do |p| %>
-    <%= render 'shared/error_messages', :object => p.object %>
-
-    <div class="control-group">
-      <%= p.label :Name ,:class => 'control-label' %>
-      <div class="controls">
+  <%= render 'shared/error_messages', :object => p.object %>
+  <div class="control-group">
+    <%= p.label :Name ,:class => 'control-label' %>
+    <div class="controls">
       <%= p.text_field :name %>
     </div>
-    </div>
-
-    <div class="control-group">
-      <%= p.label :Domain ,:class => 'control-label' %>
-      <div class="controls">
+  </div>
+  <div class="control-group">
+    <%= p.label :Domain ,:class => 'control-label' %>
+    <div class="controls">
       <%= p.text_field :domain_name %>
     </div>
-    </div>
-
-
-    <div class="control-group">
-      <%= p.label :Domain_URL ,:class => 'control-label' %>
-      <div class="controls">
+  </div>
+  <div class="control-group">
+    <%= p.label :Domain_URL ,:class => 'control-label' %>
+    <div class="controls">
       <%= p.text_field :domain_url %>
     </div>
-    </div>
-
-    <div class="form-actions">
-      <%= p.submit "Update" ,:class => 'btn btn-primary'%>
-    </div>
+  </div>
+  <div class="form-actions">
+    <%= p.submit "Update" ,:class => 'btn btn-primary'%>
+  </div>
 <% end %>
