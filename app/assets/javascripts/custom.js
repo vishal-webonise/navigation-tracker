@@ -25,7 +25,6 @@ jQuery(document).ready(function() {
 
 	function clear_project_users() {
 	 	$("#project_users").tokenInput("remove");
-	 	// $('#token-input-project_users:first').parent().parent().remove()
 	}
 
 	$("#user_project").tokenInput("dashboard/user_projects",
