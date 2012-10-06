@@ -1,27 +1,25 @@
-<%= form_for(@project, :url =>  create_project_users_path, :html => { :method => :post, :class => 'form-horizontal' }, :validate => true) do |f| %>
+<%= form_for(@project, :url => create_project_users_path, :html => { :method => :post, :class => 'form-horizontal' }, :validate => true) do |f| %>
     <%#= render 'shared/error_messages' , :object => f.object%>
   <div class="control-group">
-    <%= f.label :name, :class => 'control-label' %>
+    <%= f.label :name, "Name of the Project", :class => 'control-label' %>
     <div class="controls">
       <%= f.text_field :name %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :domain_name, :class => 'control-label' %>
+    <%= f.label :domain_name, "Name of the Domain", :class => 'control-label' %>
     <div class="controls">
       <%= f.text_field :domain_name %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :domain_url, :class => 'control-label' %>
+    <%= f.label :domain_url, "Domain URL", :class => 'control-label' %>
     <div class="controls">
-      <div class="input-prepend">
-        <span class="add-on">http://</span>
-        <%= f.text_field :domain_url, :placeholder => 'testing.oklisten.com' %>
-      </div>
+      <%= f.text_field :domain_url %>
+      <span class="help-inline">(e.g. http://example.com)</span>
     </div>
   </div>
   <div class="form-actions">
-    <%= f.submit "Create", :class => 'btn btn-primary' %>
+    <%= f.submit "Create Project", :class => 'btn btn-primary' %>
   </div>
 <% end %>

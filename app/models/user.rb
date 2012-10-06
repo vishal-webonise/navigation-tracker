@@ -9,9 +9,9 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :login_type, :first_name, :last_name, :encrypted_password, :current_password
 
   validates :first_name, :last_name, :email, :password, presence: true
-  validates :password, length: { minimum: 6, maximum: 12 }
+  validates :password, length: { minimum: 6, maximum: 15 }
   validates_format_of :password, :with => /^[a-zA-Z0-9]+$/
-  validates_uniqueness_of :email, :on => :create, :message => "This e-mail is already taken"
+  validates_uniqueness_of :email, :on => :create
 
   has_many :user_projects, :dependent => :destroy
   has_many :projects, :through => :user_projects, :uniq => true

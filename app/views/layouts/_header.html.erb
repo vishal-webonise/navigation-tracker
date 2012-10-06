@@ -5,7 +5,7 @@
       <nav>
         <ul class="nav pull-right">
           <% if !user_signed_in? %>
-              <li><%= link_to "Features", '#' %></li>
+              <li><%= link_to "Features", root_path %></li>
           <%     end %>
           <% if user_signed_in? %>
             <li id="fat-menu" class="dropdown">
@@ -15,7 +15,7 @@
               <ul class="dropdown-menu">
                 <% if !is_admin? %>
                   <li><%= link_to "My Projects", dashboard_index_path %></li>
-                  <li><%= link_to "My Profile", edit_user_registration_path %></li>
+                  <li><%= link_to "My Profile", edit_user_path(current_user) %></li>
                   <li class="divider"></li>
                 <% end %>
                   <li><%= link_to "Sign out", destroy_user_session_path, method: "delete" %></li>

@@ -9,33 +9,41 @@
     <%= render partial: 'new_project', :locals => { :project => @project } %>
   </div>
   <div class="tab-pane" id="all_projects">
-    <table class="table table-striped">
-      <thead>
-      <tr>
-        <th>Project</th>
-        <th>Visit Today</th>
-        <th>Yesterday</th>
-        <th>All Time</th>
-      </tr>
-      </thead>
-      <tbody>
-        <% @user.projects.each do |project| %>
-          <% unless project.new_record? %>
-            <tr>
-              <td>
-                <%= project.domain_url %><br>
-                <%= link_to "Edit Project", edit_project_path(project) %>
-                <%= link_to "Get Tracking Code", tracking_code_for_project_path(project) %>
-                <%= link_to "View Stats Details", project_path(project)%>
-              </td>
-              <td>0</td>
-              <td>2</td>
-              <td>2</td>
-            </tr>
+    <% if current_user.projects.any? %>
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th>Project</th>
+          <th>Visit Today</th>
+          <th>Yesterday</th>
+          <th>All Time</th>
+        </tr>
+        </thead>
+        <tbody>
+          <% @user.projects.each do |project| %>
+            <% unless project.new_record? %>
+              <tr>
+                <td>
+                  <%= project.domain_url %><br>
+                  <% if controller.project_owner?(project.id) %>  
+                    <%= link_to "Edit Project", edit_project_path(project) %>&nbsp;
+                    <%= link_to "Get Tracking Code", tracking_code_for_project_path(project) %>&nbsp;
+                    <%= link_to "View Stats Details", project_path(project)%>
+                  <% end %>
+                </td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+              </tr>
+            <% end %>
           <% end %>
-        <% end %>
-      </tbody>
-    </table>
+        </tbody>
+      </table>
+    <% else %>
+      <div class="well well-large">
+        No projects yet.
+      </div>
+    <% end %>
   </div>
   <div class="tab-pane" id="assign_users">
     <%= render partial: 'assign_project_users', :locals => { user_list: @user_list } %>

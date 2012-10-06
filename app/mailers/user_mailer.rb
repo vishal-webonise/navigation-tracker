@@ -6,11 +6,6 @@ class UserMailer < ActionMailer::Base
     mail(:to => user.email, :subject => "Thank You for Registering to Analytics")
   end
 
-  def change_password_email(user)
-  	@user = user
-  	mail(:to => user.email, :subject => "Your Password Changed")
-  end
-
   def change_user_details_by_admin_email(user)
   @user = user
   	mail(:to => user.email, :subject => "Your Details has been Changed")

@@ -1,26 +1,25 @@
-<h1>Lost your password?</h1>
+<h2>Lost your Username or Password?</h2>
 <hr>
-<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put, :class => 'form-horizontal' }, :validate => true) do |f| %>
-<%#= devise_error_messages! %>
-<%= f.hidden_field :reset_password_token %>
-
-<p>Enter your different password and confirm password i.e. perviously not used on this application</p>
-
-<div class="control-group">
-  <%= f.label :password, "New password", :class => 'control-label' %>
-  <div class="controls">
-    <%= f.password_field :password, :autocomplete => "off" %>
-  </div>
-</div>
-
-<div class="control-group">
-  <%= f.label :password_confirmation, "Confirm new password", :class => 'control-label' %>
-  <div class="controls">
-    <%= f.password_field :password_confirmation %>
-  </div>
-</div>
-
-<div class="form-actions">
-  <%= f.submit "Change my password", :class => 'btn btn-primary' %>
-</div>
+<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put, :class => 'form-horizontal', :style => "padding-left: 250px" }, :validate => true) do |f| %>
+	<%#= devise_error_messages! %>
+	<%= f.hidden_field :reset_password_token %>
+	<p style="padding-left: 50px;">Enter your different password and confirm password</p>
+	<div class="control-group">
+	  <%= f.label :password, "New Password", :class => 'control-label' %>
+	  <div class="controls">
+	    <%= f.password_field :password, :autocomplete => "off" %>
+	  </div>
+	</div>
+	<div class="control-group">
+	  <%= f.label :password_confirmation, "Confirm New Password", :class => 'control-label' %>
+	  <div class="controls">
+	    <%= f.password_field :password_confirmation %>
+	  </div>
+	</div>
+	<div class="row">
+    <div class="form-actions span4">
+      <%= f.submit "Change My Password", :class => 'btn btn-primary' %>
+      <%= f.submit "Cancel", :class => 'btn' %>
+    </div>
+	</div>
 <% end %>

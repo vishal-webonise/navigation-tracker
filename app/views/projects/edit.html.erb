@@ -1,26 +1,27 @@
-<h1>Update Project</h1>
+<h2>Update Project Details</h2>
 <hr>
-<%= form_for(@project, :validate => true) do |p| %>
-  <%= render 'shared/error_messages', :object => p.object %>
+<%= form_for(@project, :html => { :class => 'form-horizontal' }, :validate => true) do |f| %>
+  <%#= render 'shared/error_messages', :object => p.object %>
   <div class="control-group">
-    <%= p.label :Name ,:class => 'control-label' %>
+    <%= f.label :name, "Project Name", :class => 'control-label' %>
     <div class="controls">
-      <%= p.text_field :name %>
+      <%= f.text_field :name %>
     </div>
   </div>
   <div class="control-group">
-    <%= p.label :Domain ,:class => 'control-label' %>
+    <%= f.label :domain_name, "Domain Name", :class => 'control-label' %>
     <div class="controls">
-      <%= p.text_field :domain_name %>
+      <%= f.text_field :domain_name %>
     </div>
   </div>
   <div class="control-group">
-    <%= p.label :Domain_URL ,:class => 'control-label' %>
+    <%= f.label :domain_url, "Domain URL", :class => 'control-label' %>
     <div class="controls">
-      <%= p.text_field :domain_url %>
+      <%= f.text_field :domain_url %>
     </div>
   </div>
   <div class="form-actions">
-    <%= p.submit "Update" ,:class => 'btn btn-primary'%>
+    <%= f.submit "Update Project" ,:class => 'btn btn-primary'%>
   </div>
 <% end %>
+<p>Go back to <a href="<%= dashboard_index_path %>#all_projects" class="btn btn-mini">Dashboard</a></p>

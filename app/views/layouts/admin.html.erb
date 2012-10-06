@@ -13,8 +13,14 @@
       <% flash.each do |key, value| %>
         <div class="alert alert-<%= key %>"><%= value %></div>
       <% end %>
-
-      <%= yield %>
+      <div class="row">
+        <aside class="span3">
+          <%= render partial: 'shared/index_sidebar_content' %>
+        </aside>
+        <div class="span9">
+          <%= yield %>
+        </div>
+      </div>
       <%= render partial: "layouts/footer" %>
       <%#= debug(params) if Rails.env.development? %>
     </div>

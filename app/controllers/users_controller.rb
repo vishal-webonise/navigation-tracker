@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   before_filter :user_signed_in?
   before_filter :authenticate_user!
-  before_filter :admin_user, only: [:destroy]
+  before_filter :admin_user, only: [:destroy, :admin_accessible_change, :admin_accessible_update]
 
   def index
     @users = User.paginate(:page => params[:page])
@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     else
       if is_admin?
         respond_to do |format|
-          format.html { render :index }
+          format.html { render :index, layout: 'layouts/admin' }
         end
       else
         redirect_to :dashboard_index
@@ -24,7 +24,12 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    if is_admin?
+      @user = User.find(params[:id])
+      render layout: 'layouts/admin'
+    else
+      redirect_to dashboard_index_path + '#all_projects'
+    end
   end
 
   def create_project
@@ -38,22 +43,54 @@ class UsersController < ApplicationController
   
   def destroy
   	@user = User.find(params[:id]).destroy
-  	flash[:success] = "User --> #{@user.first_name} is successfully deleted!"
+  	flash[:success] = "User #{@user.first_name} is successfully deleted!"
   	redirect_to :back
+  end
+
+  def edit
+    if User.exists?(params[:id])
+      @user = User.find(params[:id])
+      if current_user == @user
+        @user
+      else
+        redirect_to edit_user_path(current_user)  
+      end
+    else
+      redirect_to edit_user_path(current_user)    
+    end
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.valid_password?(params[:user][:password])
+      if @user.update_attributes(params[:user])
+        flash[:success] = "Profile updated."
+        redirect_to :dashboard_index
+      else
+        flash[:error] = @user.errors.each {|e| puts e}
+        render 'edit'
+      end
+    else
+      flash[:error] = "Please enter your current password"
+      render 'edit'
+    end
   end
 
   def update_password
     if current_user.valid_password?(params[:user][:current_password])
       if current_user.update_with_password(params[:user])
         flash[:success] = "Password updated."
-        UserMailer.change_password_email(current_user).deliver
         redirect_to :back
       end
+    else
+      flash[:error] = "Please enter your current password"
+      redirect_to :back
     end
   end
 
   def admin_accessible_change
     @user = User.find(params[:id])
+    render layout: 'layouts/admin'
   end
 
   def admin_accessible_update
@@ -71,6 +108,6 @@ class UsersController < ApplicationController
   private
 
   def admin_user
-    redirect_to(user_path(current_user)) unless is_admin?
+    redirect_to :dashboard_index unless is_admin?
   end
 end

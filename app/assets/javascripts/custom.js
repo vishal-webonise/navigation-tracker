@@ -1,10 +1,24 @@
 jQuery(document).ready(function() {
 	
-	// Tabs
+	/* Tabs */
+
 	$('.nav-tabs a').click(function (e) {
 	  e.preventDefault();
 	  $(this).tab('show');
 	})
+
+	// Javascript to enable link to tab
+	var url = document.location.toString();
+	if (url.match('#')) {
+	  $('.nav-tabs a[href=#'+url.split('#')[1]+']').tab('show') ;
+	} 
+
+	// Change hash for page-reload
+	$('.nav-tabs a').on('shown', function (e) {
+	  window.location.hash = e.target.hash;
+	})
+
+	/* END Tabs */
 
 	/* START Token Input */
 	function project_users(project_id) {
@@ -19,7 +33,6 @@ jQuery(document).ready(function() {
 					tokenFormatter: function(item) { return "<li class='project_users' id='" + item.id + "'>" + item.first_name + " " + item.last_name + "</li>" },
 				}
 			);
-
 		}, 'json');
 	}
 
@@ -35,6 +48,13 @@ jQuery(document).ready(function() {
 	 		onDelete: clear_project_users,
 	 	}
  	);
+
+ 	// prevent form submit until both fields has values
+
+	$('#assign_project_users').submit(function(){
+		if(($('#user_project').val().length < 1) && ($('#project_users').val().length < 1))
+		  return false;
+	});
 
  	/* END Token Input */
 

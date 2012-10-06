@@ -1,0 +1,30 @@
+<%= form_for(@user, :html => { :method => :put, :class => 'form-horizontal' }, :validate => true) do |f| %>
+  <%#= devise_error_messages! %>
+  <div class="control-group">
+    <%= f.label :first_name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :first_name %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :last_name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :last_name %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :email, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.email_field :email %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :password, "Current Password", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.password_field :password, :autocomplete => "off" %>
+    </div>
+  </div>
+  <div class="form-actions">
+    <%= f.submit "Update", :class => 'btn btn-primary' %>
+  </div>
+<% end %>

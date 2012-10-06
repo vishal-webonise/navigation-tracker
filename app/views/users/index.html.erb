@@ -1,46 +1,38 @@
-<div class="row">
-  <aside class="span3">
-    <%= render partial: 'shared/index_sidebar_content' %>
-  </aside>
-  <div class="span9">
-    <section class="page-header">
-
-    </section>
-    <% if @users.any? %>
-      <table class="table table-striped">
-        <tr><h3><center>Users on the Analytics</center></h3></tr>
-        <thread>
-          <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email-address</th>
-            <th>No.of Projects</th>
-            <th>Actions</th>
-          </tr>
-        </thread>
-        <tbody>
-        <% @users.each do |user| %>
-          <% if user.email != "admin@analytics.com" %>
-            <tr>
-              <td><%= user.first_name %></td>
-              <td><%= user.last_name %></td>
-              <td><%= user.email %></td>
-              <td><%= user.projects.count %></td>
-              <td>
-                <%= link_to "View", user_path(user) %>
-                <%= link_to "Edit", admin_accessible_change_user_path(user) %>
-                <%= link_to "Delete", user_path(user), :data => { :confirm => "Are you sure?" }, :method => :delete %>
-              </td>
-            </tr>
-          <% end %>
-        <% end %>
-        </tbody>
-      </table>
-    <% else %>
-      <div class="well well-large">
-        There are no users registered yet!
-      </div>
+<section class="page-header">
+  <h3><center>Users on the Analytics</center></h3>
+</section>
+<% if @users.any? && @users.count > 1 %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email-Address</th>
+        <th>No. of Projects</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @users.each do |user| %>
+      <% if user.email != "admin@analytics.com" %>
+        <tr>
+          <td><%= user.first_name %></td>
+          <td><%= user.last_name %></td>
+          <td><%= user.email %></td>
+          <td><%= user.projects.count %></td>
+          <td>
+            <%= link_to "View", user_path(user) %>&nbsp;
+            <%= link_to "Edit", admin_accessible_change_user_path(user) %>&nbsp;
+            <%= link_to "Delete", user_path(user), :data => { :confirm => "Are you sure?" }, :method => :delete %>
+          </td>
+        </tr>
+      <% end %>
     <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="well well-large">
+    There are no users registered yet.
   </div>
-  <%= will_paginate @users %>
-</div>
+<% end %>
+<%= will_paginate @users %>

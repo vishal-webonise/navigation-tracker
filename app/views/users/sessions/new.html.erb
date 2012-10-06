@@ -4,35 +4,31 @@
   Enter your email and password to log in. If you don't have an account, click here to <%= link_to "Register", new_registration_path(resource_name) %>
   </p>
 
-  <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :class => 'form-horizontal' }, :validate => true) do |f| %>
-
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :class => 'form-horizontal', :style => "padding-left: 200px" }, :validate => true) do |f| %>
   <div class="control-group">
     <%= f.label :email, :class => 'control-label' %>
     <div class="controls">
-      <%= f.email_field :email, :placeholder => 'Enter your email' %>
+      <%= f.email_field :email, :placeholder => 'Enter your email', :validate => true %>
     </div>
   </div>
-
   <div class="control-group">
     <%= f.label :password, :class => 'control-label' %>
     <div class="controls">
-      <%= f.password_field :password, :autocomplete => "off", :placeholder => 'Enter your password' %>
+      <%= f.password_field :password, :autocomplete => "off", :placeholder => 'Enter your password', :validate => true %>
     </div>
   </div>
-
-  <% if devise_mapping.rememberable? -%>
-  	<div class="control-group">
-  	  <div class="controls">
+  <div class="row">
+    <div class="span4" style="margin: 0 -160px 0 92px;">
+      <% if devise_mapping.rememberable? -%>
   	    <label class="checkbox">
   	      <%= f.check_box :remember_me %> <%= f.label :remember_me %>
   	    </label>
-  	  </div>
-  	</div>
-  <% end -%>
-
-  <div class="form-actions">
-    <%= f.submit "Log in", :class => 'btn btn-primary' %>
+      <% end -%>
+      <%= link_to "Forgot password?", new_password_path(resource_name) %>
+    </div>
+    <div class="span4">
+      <%= f.submit "Log in", :class => 'btn btn-primary' %>
+      <%= f.submit "Cancel", :class => 'btn' %>
+    </div>
   </div>
-
-  <p><%= link_to "Forgot password?", new_password_path(resource_name) %></p>
 <% end %>

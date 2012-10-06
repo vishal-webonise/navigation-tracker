@@ -10,7 +10,7 @@ NavigationTracker::Application.load_tasks
 desc 'Create Admin user'
 namespace :app do
     task :create_admin_user => :environment do
-      user = User.create!(first_name: 'Site', last_name: 'Admin', email: 'admin@analytics.com', login_type: 'admin', password: 'analytics12')
+      user = User.create!(first_name: 'Super', last_name: 'Admin', email: 'admin@analytics.com', login_type: 'admin', password: 'analytics2012')
       user.save
     end
 end

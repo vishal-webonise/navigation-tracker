@@ -1,20 +1,18 @@
-<h1>Details of User</h1>
-<hr>
-<tr>
-  <td>
-    <strong>First Name:</strong>
-    <%= @user.first_name %> <br><br>
-  </td>
-</tr>
-<tr>
-  <td>
-    <strong>Last Name:</strong>
-    <%= @user.last_name %> <br><br>
-  </td>
-</tr>
-<tr>
-  <td>
-    <strong>Email-address :</strong>
-    <%= @user.email %> <br><br>
-  </td>
-</tr>
+<h2>User Details</h2>
+<table class="table">
+  <tr>
+    <td><strong>First Name: </strong></td>
+    <td><span><%= @user.first_name %></span></td>
+  </tr>
+  <tr>
+    <td><strong>Last Name: </strong></td>
+    <td><span><%= @user.last_name %></span></td>
+  </tr>
+  <tr>
+    <td><strong>Email Address: </strong></td>
+    <td><span><%= @user.email %></span></td>
+  </tr>
+</table>
+<% if !is_admin? %>
+  <p>Go back to <a href="<%= dashboard_index_path %>#all_projects" class="btn btn-mini">Dashboard</a></p>
+<% end %>

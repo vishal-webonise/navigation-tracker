@@ -1,18 +1,18 @@
-<h1>Lost your password?</h1>
+<h2>Lost your Username or Password?</h2>
 <hr>
-<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post, :class => 'form-horizontal' }, :validate => true) do |f| %>
+<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post, :class => 'form-horizontal', :style => "padding-left: 250px" }, :validate => true) do |f| %>
   <%#= devise_error_messages! %>
-
   <p>Enter your e-mail and we'll send you a link to reset yur password.</p><br>
-
   <div class="control-group">
     <%= f.label :email, :class => 'control-label' %>
     <div class="controls">
       <%= f.email_field :email %>
     </div>
   </div>
-
-  <div class="form-actions">
-    <%= f.submit "Send E-mail", :class => 'btn btn-primary' %>
+  <div class="row">
+    <div class="form-actions span4">
+      <%= f.submit "Send E-mail", :class => 'btn btn-primary' %>
+      <%= f.submit "Cancel", :class => 'btn' %>
+    </div>
   </div>
 <% end %>

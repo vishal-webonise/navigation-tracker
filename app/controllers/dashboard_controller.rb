@@ -1,5 +1,8 @@
 class DashboardController < ApplicationController
 
+  before_filter :authenticate_user!
+  before_filter :admin_user, :only => [:admin]
+
   def index
     if is_admin?
       redirect_to admin_dashboard_index_path
@@ -12,7 +15,9 @@ class DashboardController < ApplicationController
   end
 
   def admin
-
+    @users = User.all
+    @projects = Project.all
+    render layout: 'layouts/admin'
   end
 
   def user_projects
@@ -47,4 +52,9 @@ class DashboardController < ApplicationController
     redirect_to :back
   end
 
+  private
+
+  def admin_user
+    redirect_to :dashboard_index unless is_admin?
+  end
 end

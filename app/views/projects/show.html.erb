@@ -1,26 +1,18 @@
-
-<h1 xmlns="http://www.w3.org/1999/html">Details of Project</h1>
-<hr>
+<h2>Project Details</h2>
+<table class="table">
   <tr>
-    <td>
-      <strong>Name of the Project:</strong>
-      <%= @project.name %> <br><br>
-    </td>
+    <td><strong>Project Name: </strong></td>
+    <td><span><%= @project.name %></span></td>
   </tr>
   <tr>
-    <td>
-      <strong>Name of the Domain:</strong>
-      <%= @project.domain_name %> <br><br>
-    </td>
+    <td><strong>Project Domain: </strong></td>
+    <td><span><%= @project.domain_name %></span></td>
   </tr>
   <tr>
-    <td>
-      <strong>Domain URL :</strong>
-      <%= @project.domain_url %> <br><br>
-    </td>
+    <td><strong>Project URL: </strong></td>
+    <td><span><%= @project.domain_url %></span></td>
   </tr>
-
-
-
-
-
+</table>
+<% if !is_admin? %>
+  <p>Go back to <a href="<%= dashboard_index_path %>#all_projects" class="btn btn-mini">Dashboard</a></p>
+<% end %>
