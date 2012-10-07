@@ -79,8 +79,11 @@ class UsersController < ApplicationController
   def update_password
     if current_user.valid_password?(params[:user][:current_password])
       if current_user.update_with_password(params[:user])
+        sign_in(current_user, :bypass => true)
         flash[:success] = "Password updated."
-        redirect_to :back
+        redirect_to dashboard_index_path
+      else
+        redirect_to :back, :notice => "New password do not match"
       end
     else
       flash[:error] = "Please enter your current password"
@@ -100,8 +103,8 @@ class UsersController < ApplicationController
       UserMailer.change_user_details_by_admin_email(@user).deliver
       redirect_to users_path
     else
-      flash[:error] = "An error occured."
-      render "admin_accessible_change"
+      flash[:error] = "Passwords do not match."
+      redirect_to admin_accessible_change_user_path
     end
   end
 
