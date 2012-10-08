@@ -11,8 +11,8 @@ class User < ActiveRecord::Base
   #validates :first_name, :email, presence: true
   validates :first_name, :presence => { :message => "User first name can't be blank" }
   validates :last_name, :presence => { :message => "User last name can't be blank" }
-  validates_format_of :first_name, :with => /^[a-zA-Z\s]$/, :message => "Enter a valid first name"
-  validates_format_of :last_name, :with => /^[a-zA-Z\s]$/, :message => "Enter a valid last name"
+  validates_format_of :first_name, :with => /^[a-zA-Z\s]+$/, :message => "Enter a valid first name"
+  validates_format_of :last_name, :with => /^[a-zA-Z\s]+$/, :message => "Enter a valid last name"
   validates :email, :presence => { :message => "Email can't be blank" }
   validates_format_of :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i, :message => "Enter a valid email address"
   validates :email, :uniqueness => { :message => "Email should be unique" }
