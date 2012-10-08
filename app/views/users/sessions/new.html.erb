@@ -17,13 +17,15 @@
       <%= f.password_field :password, :autocomplete => "off", :placeholder => 'Enter your password', :validate => true %>
     </div>
   </div>
+  <div class="control-group" style="margin-left: 160px">
+    <% if devise_mapping.rememberable? -%>
+      <label class="checkbox">
+        <%= f.check_box :remember_me %> <%= f.label :remember_me %>
+      </label>
+    <% end -%>
+  </div>
   <div class="row">
-    <div class="span4" style="margin: 0 -160px 0 92px;">
-      <% if devise_mapping.rememberable? -%>
-  	    <label class="checkbox">
-  	      <%= f.check_box :remember_me %> <%= f.label :remember_me %>
-  	    </label>
-      <% end -%>
+    <div class="span4" style="margin: 0 -113px 0 48px">
       <%= link_to "Forgot password?", new_password_path(resource_name) %>
     </div>
     <div class="span4">
