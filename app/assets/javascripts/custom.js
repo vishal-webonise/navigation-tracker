@@ -52,10 +52,17 @@ jQuery(document).ready(function() {
  	// prevent form submit until both fields has values
 
 	$('#assign_project_users').submit(function(){
-		if(($('#user_project').val().length < 1) && ($('#project_users').val().length < 1))
-		  return false;
+		if(($('#user_project').val().length < 1) && ($('#project_users').val().length < 1)){
+			$('#alert_box').addClass("alert-error").html('Please select something before submit').fadeIn(200).delay(5500).fadeOut(500).removeClass('alert-error');
+			return false;
+		}
 	});
 
  	/* END Token Input */
+
+ 	// Show My Projects tab if current_user.projects.any? or show Add new project tab
+ 	if($('#all_projects div').attr('rel') != "no_projects") {
+ 		$('li a[href=#all_projects]').trigger('click');
+ 	}
 
 }); // END documnet-ready

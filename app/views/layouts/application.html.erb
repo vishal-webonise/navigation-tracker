@@ -10,6 +10,7 @@
 <body>
   <%= render partial: "layouts/header" %>
     <div class="container">
+      <p id="alert_box" class="alert" style="display: none;"></p>
       <% flash.each do |key, value| %>
         <div class="alert alert-<%= key %>"><%= value %></div>
       <% end %>
