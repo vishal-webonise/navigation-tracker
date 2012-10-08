@@ -22,7 +22,8 @@ class DashboardController < ApplicationController
 
   def user_projects
     query = params[:q]
-    @user_projects = current_user.projects.where("name LIKE ?", "%#{query}%")
+    # @user_projects = current_user.projects.where("name LIKE ?", "%#{query}%")
+    @user_projects = current_user.projects.where("projects.name LIKE ? AND projects.id = user_projects.project_id AND user_projects.is_owner LIKE ?", "%#{query}%", true)
     respond_to do |format|
       format.json { render :json => @user_projects }
     end
