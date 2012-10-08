@@ -7,7 +7,7 @@ class Project < ActiveRecord::Base
   validates_length_of :name, :maximum => 50, :message=>"Name can't be more than 50 characters"
   validates :domain_name ,:presence => { :message => "Domain name can't be blank" }
   validates :domain_url ,:presence => { :message => "Domain URL can't be blank" }
-  #validates :name, :length=> { :maximum => 50 , :message => "Name can't be more than 50 characters" }
+  #validates :name, :length => { :maximum => 50 , :message => "Name can't be more than 50 characters" }
 
 
 
