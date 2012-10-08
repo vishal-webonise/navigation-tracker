@@ -29,6 +29,7 @@
                     <%= link_to "Edit Project", edit_project_path(project) %>&nbsp;
                     <%= link_to "Get Tracking Code", tracking_code_for_project_path(project) %>&nbsp;
                     <%= link_to "View Stats Details", project_path(project)%>
+                    <%= link_to "Delete Project", project_path(project), :data => { :confirm => "Are you sure?" }, :method => :delete %>
                   <% end %>
                 </td>
                 <td>0</td>
