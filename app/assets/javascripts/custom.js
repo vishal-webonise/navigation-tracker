@@ -53,7 +53,7 @@ jQuery(document).ready(function() {
 
 	$('#assign_project_users').submit(function(){
 		if(($('#user_project').val().length < 1) && ($('#project_users').val().length < 1)){
-			$('#alert_box').addClass("alert-error").html('Please select something before submit').fadeIn(200).delay(5500).fadeOut(500).removeClass('alert-error');
+			$('#alert_box').addClass("alert-error").html('Please select project and users before submit').fadeIn(200).delay(5500).fadeOut(500).removeClass('alert-error');
 			return false;
 		}
 	});

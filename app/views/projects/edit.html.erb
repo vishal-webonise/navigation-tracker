@@ -1,4 +1,9 @@
-<h2>Update Project Details</h2>
+<h2>
+  Update Project Details
+  <small>
+      <p style="display: inline; float: right; font-size: 15px">Go to <a href="<%= dashboard_index_path %>#all_projects">Dashboard</a></p>
+  </small>
+</h2>
 <hr>
 <%= form_for(@project, :html => { :class => 'form-horizontal' }, :validate => true) do |f| %>
   <%#= render 'shared/error_messages', :object => p.object %>
@@ -24,4 +29,3 @@
     <%= f.submit "Update Project" ,:class => 'btn btn-primary'%>
   </div>
 <% end %>
-<p>Go back to <a href="<%= dashboard_index_path %>#all_projects" class="btn btn-mini">Dashboard</a></p>

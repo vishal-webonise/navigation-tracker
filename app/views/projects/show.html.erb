@@ -1,4 +1,11 @@
-<h2>Project Details</h2>
+<h2>
+  Project Details
+  <small>
+    <% if !is_admin? %>
+      <p style="display: inline; float: right; font-size: 15px">Go to <a href="<%= dashboard_index_path %>#all_projects">Dashboard</a></p>
+    <% end %>
+  </small>
+</h2>
 <table class="table">
   <tr>
     <td><strong>Project Name: </strong></td>
@@ -13,6 +20,3 @@
     <td><span><%= @project.domain_url %></span></td>
   </tr>
 </table>
-<% if !is_admin? %>
-  <p>Go back to <a href="<%= dashboard_index_path %>#all_projects" class="btn btn-mini">Dashboard</a></p>
-<% end %>

@@ -13,6 +13,3 @@
     <td><span><%= @user.email %></span></td>
   </tr>
 </table>
-<% if !is_admin? %>
-  <p>Go back to <a href="<%= dashboard_index_path %>#all_projects" class="btn btn-mini">Dashboard</a></p>
-<% end %>

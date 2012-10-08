@@ -62,16 +62,13 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.valid_password?(params[:user][:password])
-      if @user.update_attributes(params[:user])
-        flash[:success] = "Profile updated."
-        redirect_to :dashboard_index
-      else
-        flash[:error] = @user.errors.each {|e| puts e}
-        render 'edit'
-      end
+    logger.info("###############################{params[:user]}")
+    if @user.update_attributes(params[:user])
+      # sign_in(@user, :bypass => true)
+      flash[:success] = "Profile updated."
+      redirect_to :dashboard_index
     else
-      flash[:error] = "Please enter your current password"
+      # flash[:error] = @user.errors.each {|e| puts e}
       render 'edit'
     end
   end

@@ -2,14 +2,10 @@ class Project < ActiveRecord::Base
   attr_accessible :name, :domain_name, :domain_url
   self.per_page = 10
 
-  #validates :name, :domain_name, :domain_url, :presence => true
   validates :name ,:presence => { :message => "Project name can't be blank" }
-  validates_length_of :name, :maximum => 50, :message=>"Name can't be more than 50 characters"
+  validates_length_of :name, minimum: 1, maximum: 50, :message => "Project name should be between 1 to 50 characters"
   validates :domain_name ,:presence => { :message => "Domain name can't be blank" }
   validates :domain_url ,:presence => { :message => "Domain URL can't be blank" }
-  #validates :name, :length => { :maximum => 50 , :message => "Name can't be more than 50 characters" }
-
-
 
   validates :name, :uniqueness => { :message => "Project name should be unique" }
   validates :domain_name, :uniqueness => { :message => "Domain name should be unique" }
