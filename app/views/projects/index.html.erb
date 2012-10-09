@@ -6,7 +6,6 @@
     <thread>
       <tr>
         <th>Project Name</th>
-        <th>Domain Name</th>
         <th>Domain URL</th>
         <th>Actions</th>
       </tr>
@@ -15,7 +14,6 @@
     <% @projects.each do |project| %>
       <tr>
         <td><%= project.name %></td>
-        <td><%= project.domain_name %></td>
         <td><%= project.domain_url %></td>
         <td>
           <%= link_to "View", project_path(project)%>&nbsp;

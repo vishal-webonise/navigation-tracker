@@ -13,7 +13,8 @@ class User < ActiveRecord::Base
   validates :last_name, :presence => { :message => "User last name can't be blank" }
   validates_format_of :first_name, :with => /^[a-zA-Z\s]+$/, :message => "Enter a valid first name"
   validates_format_of :last_name, :with => /^[a-zA-Z\s]+$/, :message => "Enter a valid last name"
-  validates :email, :presence => { :message => "Email can't be blank" }
+  #validates :email, :presence => { :message => "Email can't be blank" }
+  validates_presence_of :email, :message => "Email can't be blank"
   validates_format_of :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i, :message => "Enter a valid email address"
   validates :email, :uniqueness => { :message => "Email should be unique" }
   validates_presence_of :password, :message => "Password can't be blank", :allow_nil => true, :unless => "password.nil?"
@@ -21,6 +22,7 @@ class User < ActiveRecord::Base
   validates_format_of :password, :with => /^[a-zA-Z0-9]+$/, :message => "Enter password in alphanumeric format", :allow_nil => true, :unless => "password.nil?"
   validates :password, :confirmation => { :message => "Passwords do not match" }
   validates_confirmation_of :password
+  validates_presence_of :password_confirmation, :message => "Password confirmation can't be blank"
 
   has_many :user_projects, :dependent => :destroy
   has_many :projects, :through => :user_projects, :uniq => true
