@@ -1,7 +1,6 @@
 <ul class="nav nav-tabs">
   <li class="active"><a href="#new_project">Add new project</a></li>
   <li><a href="#all_projects">My Projects</a></li>
-  <li><a href="#assign_users">Assign Users</a></li>
 </ul>
  
 <div class="tab-content">
@@ -30,6 +29,7 @@
                     <%= link_to "Get Tracking Code", tracking_code_for_project_path(project) %>&nbsp;
                     <%= link_to "View Stats Details", project_path(project)%>
                     <%= link_to "Delete Project", project_path(project), :data => { :confirm => "Are you sure?" }, :method => :delete %>
+                    <%= link_to "Assign Users", users_assigned_on_project_path(project) %>
                   <% end %>
                 </td>
                 <td>0</td>
@@ -45,9 +45,6 @@
         No projects yet.
       </div>
     <% end %>
-  </div>
-  <div class="tab-pane" id="assign_users">
-    <%= render partial: 'assign_project_users', :locals => { user_list: @user_list } %>
   </div>
 </div>
  

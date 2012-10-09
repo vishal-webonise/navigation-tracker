@@ -21,39 +21,21 @@ jQuery(document).ready(function() {
 	/* END Tabs */
 
 	/* START Token Input */
-	function project_users(project_id) {
-		project_users_ids = $.get("dashboard/project_users", {project_id: project_id}, function(data) {
-			project_users_ids = JSON.stringify(data);
-			//console.log(project_users_ids);
-			$("#project_users").tokenInput( "users",
+
+	project_id = $("#project_id").attr('value');
+	console.log(project_id);
+	$("#project_users").tokenInput("/projects/"+project_id+"/users.json",
 				{ 
 					propertyToSearch: "first_name",
-					prePopulate: $.parseJSON(project_users_ids),
-					preventDuplicates: true,
 					tokenFormatter: function(item) { return "<li class='project_users' id='" + item.id + "'>" + item.first_name + " " + item.last_name + "</li>" },
 				}
 			);
-		}, 'json');
-	}
-
-	function clear_project_users() {
-	 	$("#project_users").tokenInput("remove");
-	}
-
-	$("#user_project").tokenInput("dashboard/user_projects",
-	 	{
-	 		tokenLimit: 1,
-	 		tokenFormatter: function(item) { return "<li class='project_users' id='" + item.id + "'>" + item.name + "</li>" },
-	 		onAdd: function(item){ project_users(item.id)},
-	 		onDelete: clear_project_users,
-	 	}
- 	);
 
  	// prevent form submit until both fields has values
 
-	$('#assign_project_users').submit(function(){
-		if(($('#user_project').val().length < 1) && ($('#project_users').val().length < 1)){
-			$('#alert_box').addClass("alert-error").html('Please select project and users before submit').fadeIn(200).delay(5500).fadeOut(500).removeClass('alert-error');
+	$('#assign_users_to_project').submit(function(){
+		if($('#project_users').val().length < 1){
+			$('#alert_box').addClass("alert-error").html('Users before submit').fadeIn(200).delay(5500).fadeOut(500).removeClass('alert-error');
 			return false;
 		}
 	});

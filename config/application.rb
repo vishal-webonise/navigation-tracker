@@ -64,9 +64,9 @@ module NavigationTracker
       config.action_mailer.smtp_settings = {
         address:              'smtp.gmail.com',
         port:                 587,
-        domain:               'local.pols5.com',
-        user_name:            'test.user.webonise@gmail.com',
-        password:             'webonise6186',
+        domain:               'mail.weboniselab.com',
+        user_name:            'pansingh@weboniselab.com',
+        password:             'pansingh6186',
         authentication:       'plain',
         enable_starttls_auto: true  }
   end

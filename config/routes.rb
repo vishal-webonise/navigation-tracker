@@ -22,6 +22,9 @@ NavigationTracker::Application.routes.draw do
   resources :projects do 
     member do
       get :tracking_code, :as => :tracking_code_for
+      get :users, :as => :users_assigned_on
+      post :assign_users, :as => :assign_users_to
+      delete :unassign_user, :as => :unassign_user_from
     end
   end
   # The priority is based upon order of creation:

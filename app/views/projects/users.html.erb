@@ -1,0 +1,37 @@
+<h2>
+  Users on project - <%= @project.name %>
+  <small>
+    <% if !is_admin? %>
+      <p style="display: inline; float: right; font-size: 15px">Go to <a href="<%= dashboard_index_path %>#all_projects">Dashboard</a></p>
+    <% end %>
+  </small>
+</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>User Name</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= "#{current_user.first_name} #{current_user.last_name}" %></td>
+        <td> Project Owner </td>
+      </tr>
+      <% @project_users.each do |user| %>
+        <% unless user.new_record? %>
+          <tr>
+          <tr>
+            <td>
+              <%= "#{user.first_name} #{user.last_name}" %>
+            </td>
+            <td>
+              <%= link_to 'Unassign', unassign_user_from_project_path(@project)+"?user_id=#{user.id}", :data => { :confirm => "Are you sure?" }, :method => :delete %>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+<hr>
+<%= render partial: 'assign_users' %>
