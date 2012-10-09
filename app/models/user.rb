@@ -21,6 +21,7 @@ class User < ActiveRecord::Base
   validates_format_of :password, :with => /^[a-zA-Z0-9]+$/, :message => "Enter password in alphanumeric format", :allow_nil => true, :unless => "password.nil?"
   validates :password, :confirmation => { :message => "Passwords do not match" }
   validates_confirmation_of :password
+  validates_presence_of :password_confirmation, :message => "Password confirmation can't be blank"
 
   has_many :user_projects, :dependent => :destroy
   has_many :projects, :through => :user_projects, :uniq => true
