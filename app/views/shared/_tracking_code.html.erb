@@ -1,10 +1,10 @@
 <pre>
-	&lt;!-- Begin AnalyticsTracking Code --&gt;
-	var img = document.createElement("img");
-	img.setAttribute('src', '/apis/tracker.png?domain_url=<%= project.domain_url %>);
-	img.setAttribute('alt', ' ');
-	img.setAttribute('height', '1px');
-	img.setAttribute('width', '1px');
-	document.body.appendChild(img);
-	&lt;!-- End Analytics Tracking Code --&gt;
+	&lt;script type="text/javascript"&gt;
+		&lt;!-- Begin AnalyticsTracking Code --&gt;
+		var domain_url = "<%= project.domain_url %>"
+		var wl_tracker = document.createElement('script'); wl_tracker.type = 'text/javascript';   
+		wl_tracker.async = true; wl_tracker.src = 'http://<%= SITE_HOST %>/wl_tracker.js';
+		document.body.appendChild(wl_tracker);
+		&lt;!-- End Analytics Tracking Code --&gt;
+	&lt;/script&gt;
 </pre>

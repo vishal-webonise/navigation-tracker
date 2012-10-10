@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   validates_format_of :last_name, :with => /^[a-zA-Z\s]+$/, :message => "Enter a valid last name"
   validates_presence_of :email, :message => "Email can't be blank" 
   validates_format_of :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i, :message => "Enter a valid email address"
-  validates :email, :uniqueness => { :message => "Email should be unique" }
+  validates :email, :uniqueness => { :message => "This email is already taken" }
   validates_presence_of :password, :message => "Password can't be blank", :allow_nil => true, :unless => "password.nil?"
   validates_length_of :password, minimum: 6, maximum: 15, :message => "Enter password between 6 to 15 characters", :allow_nil => true, :unless => "password.nil?"
   validates_format_of :password, :with => /^[a-zA-Z0-9]+$/, :message => "Enter password in alphanumeric format", :allow_nil => true, :unless => "password.nil?"
