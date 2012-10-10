@@ -11,14 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121009094911) do
+ActiveRecord::Schema.define(:version => 20121010051623) do
 
   create_table "analytic_data", :force => true do |t|
     t.integer  "project_id"
-    t.string   "url"
     t.string   "ip_address"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.string   "visit_path"
+    t.string   "reference_path"
   end
 
   create_table "projects", :force => true do |t|
