@@ -1,30 +1,36 @@
-<h2>
-  Project Details
-  <small>
-    <% if !is_admin? %>
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#stats">Stats Details</a></li>
+</ul>
+<div class="tab-content">
+  <div class="tab-pane active" id="stats">
+    <small>
       <p style="display: inline; float: right; font-size: 15px">Go to <a href="<%= dashboard_index_path %>#all_projects">Dashboard</a></p>
-    <% end %>
-  </small>
-</h2>
-<table class="table">
-  <tr>
-    <td><strong>Project Name: </strong></td>
-    <td><span><%= @project.name %></span></td>
-  </tr>
-  <tr>
-    <td><strong>Project URL: </strong></td>
-    <td><span><%= @project.domain_url %></span></td>
-  </tr>
-  <tr>
-    <td><strong>Total Page Hits: </strong></td>
-    <td><span><%= %></span></td>
-  </tr>
-  <tr>
-    <td><strong>Total Unique Page Hits: </strong></td>
-    <td><span><%=  %></span></td>
-  </tr>
-  <tr>
-    <td><strong>Total Hits On Whole Domain: </strong></td>
-    <td><span><%=  %></span></td>
-  </tr>
-</table>
+    </small>
+    <h2>Name of the Project: <%= @project.name %> </h2>
+    <hr>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+          <th>#</th>
+          <th>Users Visited</th>
+          <th>No. of Hits on Domain</th>
+          <th>No. of Unique Hits on Domain</th>
+          <th>No. of Hits on Domain since Last Hour</th>
+          <th>No. of Unique Hits on Domain since Last Hour</th>
+          <th>Graph</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td><%= link_to "View Graph" ,"#" %></td>
+        </tr>
+        </tbody>
+    </table>
+  </div>
+</div>
