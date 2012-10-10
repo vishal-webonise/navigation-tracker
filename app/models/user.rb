@@ -19,9 +19,9 @@ class User < ActiveRecord::Base
   validates_presence_of :password, :message => "Password can't be blank", :allow_nil => true, :unless => "password.nil?"
   validates_length_of :password, minimum: 6, maximum: 15, :message => "Enter password between 6 to 15 characters", :allow_nil => true, :unless => "password.nil?"
   validates_format_of :password, :with => /^[a-zA-Z0-9]+$/, :message => "Enter password in alphanumeric format", :allow_nil => true, :unless => "password.nil?"
-  validates :password, :confirmation => { :message => "Passwords do not match" }
-  validates_confirmation_of :password
-  validates_presence_of :password_confirmation, :message => "Password confirmation can't be blank"
+  validates :password, :confirmation => { :message => "Passwords do not match" }, :allow_nil => true, :unless => "password.nil?"
+  validates_confirmation_of :password , :allow_nil => true, :unless => "password.nil?"
+  validates_presence_of :password_confirmation, :message => "Password confirmation can't be blank", :allow_nil => true, :unless => "password.nil?"
 
   has_many :user_projects, :dependent => :destroy
   has_many :projects, :through => :user_projects, :uniq => true

@@ -8,6 +8,6 @@ class UserMailer < ActionMailer::Base
 
   def change_user_details_by_admin_email(user)
   @user = user
-  	mail(:to => user.email, :subject => "Your Details has been Changed")
+  	mail(:to => user.email, :subject => "Analytics Super Admin has updated your Information")
   end
 end
