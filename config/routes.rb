@@ -27,6 +27,11 @@ NavigationTracker::Application.routes.draw do
       delete :unassign_user, :as => :unassign_user_from
     end
   end
+  resources :apis do
+    collection do
+      get :tracker
+    end
+  end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
