@@ -32,9 +32,10 @@
                     <%= link_to "Assign Users", users_assigned_on_project_path(project) %>
                   <% end %>
                 </td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
+                <td><%=Project.find(project.id).analytic_datas.select("created_at").where('created_at BETWEEN ? AND ?', DateTime.now.beginning_of_day, DateTime.now.end_of_day).count %></td>
+                <td><%= Project.find(project.id).analytic_datas.select("created_at").where("DATE(created_at) = ?", Date.today-1).count %></td>
+                <td><%= Project.find(project.id).analytic_datas.count %></td>
+
               </tr>
             <% end %>
           <% end %>
@@ -47,4 +48,3 @@
     <% end %>
   </div>
 </div>
- 
