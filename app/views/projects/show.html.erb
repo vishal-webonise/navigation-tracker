@@ -7,30 +7,33 @@
       <p style="display: inline; float: right; font-size: 15px">Go to <a href="<%= dashboard_index_path %>#all_projects">Dashboard</a></p>
     </small>
     <h2>Name of the Project: <%= @project.name %> </h2>
-    <hr>
-    <table class="table table-striped">
+    <% if @results.any? %>
+    <table class="table table-striped table-bordered">
         <thead>
         <tr>
           <th>#</th>
           <th>Users Visited</th>
           <th>No. of Hits on Domain</th>
-          <th>No. of Unique Hits on Domain</th>
-          <th>No. of Hits on Domain since Last Hour</th>
-          <th>No. of Unique Hits on Domain since Last Hour</th>
+          <th>Last Visit Date</th>
           <th>Graph</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-          <td>0</td>
-          <td>0</td>
-          <td>0</td>
-          <td>0</td>
-          <td>0</td>
-          <td>0</td>
-          <td><%= link_to "View Graph" ,"#" %></td>
-        </tr>
+          <% @results.each_with_index do |row, index| %>
+          <tr>
+            <td><%= index+1 %></td>
+            <td><%= row.split(",")[0] %></td>
+            <td><%= row.split(",")[2] %></td>
+            <td><%= row.split(",")[1] %></td>
+            <td><%= link_to "View Graph", visitor_behaviour_on_project_path(@project) + "?ip=#{row.split(",")[0]}" %></td>
+          </tr>
+        <% end %>
         </tbody>
     </table>
+    <% else %>
+      <div class="well well-big">
+        No visits yet.
+      </div>
+    <% end %>
   </div>
 </div>

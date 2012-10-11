@@ -25,6 +25,7 @@ NavigationTracker::Application.routes.draw do
       get :users, :as => :users_assigned_on
       post :assign_users, :as => :assign_users_to
       delete :unassign_user, :as => :unassign_user_from
+      get :visitor_behaviour, :as => :visitor_behaviour_on
     end
   end
   resources :apis do

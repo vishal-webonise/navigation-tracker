@@ -32,6 +32,11 @@ class ProjectsController < ApplicationController
   end
 
   def show
+    @project = Project.find(params[:id])
+    @analytic_data = @project.analytic_datas
+    @ip_addresses = @analytic_data.group_by{ |i| i.ip_address }
+    # @results = @ip_addresses.collect{ |i,v| i + "," + v.last.created_at.to_s + "," + v.count.to_s + v.select{ |l| [DateTime.now.yesterday...DateTime.now].include?(l.created_at)}.join(",")}
+    @results = @ip_addresses.collect{ |i,v| i + "," + v.last.created_at.to_s + "," + v.count.to_s }
     if project_owner?(@project.id)
       render :show
     elsif is_admin?
@@ -109,6 +114,19 @@ class ProjectsController < ApplicationController
         flash[:success] = "User unassigned successfully"
         redirect_to :dashboard_index
       end
+  end
+
+  def visitor_behaviour
+    logger.info("######################Project_ID => #{params[:id]}, Visitor_IP => #{params[:ip]}")
+    @visit_hour_groups = Project.find(params[:id]).analytic_datas.where('ip_address = ?', params[:ip]).order('created_at DESC').select('concat(month(created_at),"-",year(created_at),"-",hour(created_at)) as tracking_hour, visit_path, reference_path').group_by{|i| i.tracking_hour}
+
+    if project_owner?(params[:id])
+      render :visitor_behaviour
+    elsif is_admin?
+      render :visitor_behaviour, layout: 'layouts/admin'
+    else
+      redirect_to :dashboard_index
+    end
   end
 
   private 
