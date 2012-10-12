@@ -120,7 +120,7 @@ class ProjectsController < ApplicationController
 
   def visitor_behaviour
     logger.info("######################Project_ID => #{params[:id]}, Visitor_IP => #{params[:ip]}")
-    @visit_hour_groups = Project.find(params[:id]).analytic_datas.where('ip_address = ?', params[:ip]).order('created_at DESC').select('concat(month(created_at),"-",year(created_at),"-",hour(created_at)) as tracking_hour, visit_path, reference_path').group_by{|i| i.tracking_hour}
+    @visit_hour_groups = Project.find(params[:id]).analytic_datas.where('ip_address = ?', params[:ip]).order('created_at DESC').select('concat(month(created_at),"-",year(created_at),"-",hour(created_at)) as tracking_hour, visit_path, reference_path, created_at').group_by{|i| i.tracking_hour}
     json_collection = []
     @visit_hour_groups.each do |hourly_date, records|
       records.group_by{|i| i.reference_path}.each do |parent, children| 
