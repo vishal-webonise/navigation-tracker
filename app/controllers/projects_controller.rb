@@ -3,6 +3,8 @@ class ProjectsController < ApplicationController
   before_filter :exists?, only: [:edit, :update, :show, :users, :assign_users]
   before_filter :find_project, only: [:edit, :show, :update, :tracking_code, :users]
 
+  include ProjectsHelper
+
   def create
     @project = current_user.projects.build(params[:project])
     if @project.save
@@ -119,13 +121,22 @@ class ProjectsController < ApplicationController
   def visitor_behaviour
     logger.info("######################Project_ID => #{params[:id]}, Visitor_IP => #{params[:ip]}")
     @visit_hour_groups = Project.find(params[:id]).analytic_datas.where('ip_address = ?', params[:ip]).order('created_at DESC').select('concat(month(created_at),"-",year(created_at),"-",hour(created_at)) as tracking_hour, visit_path, reference_path').group_by{|i| i.tracking_hour}
-
-    if project_owner?(params[:id])
-      render :visitor_behaviour
-    elsif is_admin?
-      render :visitor_behaviour, layout: 'layouts/admin'
-    else
-      redirect_to :dashboard_index
+    json_collection = []
+    @visit_hour_groups.each do |hourly_date, records|
+      records.group_by{|i| i.reference_path}.each do |parent, children| 
+        json_collection.push((results_as_json(parent, children))) 
+      end 
+    end
+    # if project_owner?(params[:id])
+    #   render :visitor_behaviour
+    # elsif is_admin?
+    #   render :visitor_behaviour, layout: 'layouts/admin'
+    # else
+    #   redirect_to :dashboard_index
+    # end
+    respond_to do |format|
+      format.html { render :visitor_behaviour }
+      format.json{ render :json => json_collection }
     end
   end
 
