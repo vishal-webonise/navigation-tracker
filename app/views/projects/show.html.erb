@@ -1,11 +1,13 @@
+<% if !is_admin? %>
+    <small>
+      <p style="display: inline; float: right; font-size: 15px">Go to <a href="<%= dashboard_index_path %>#all_projects">Dashboard</a></p>
+    </small>
+<% end %>
 <ul class="nav nav-tabs">
   <li class="active"><a href="#stats">Stats Details</a></li>
 </ul>
 <div class="tab-content">
   <div class="tab-pane active" id="stats">
-    <small>
-      <p style="display: inline; float: right; font-size: 15px">Go to <a href="<%= dashboard_index_path %>#all_projects">Dashboard</a></p>
-    </small>
     <h2>Name of the Project: <%= @project.name %></h2>
     <div id="project_total_stat_figures">
       <span>Total Hits: <%= @total_hits %></span>
@@ -31,13 +33,13 @@
             <td><%= row.split(",")[1] %></td>
             <td><%= link_to "View Graph", visitor_behaviour_on_project_path(@project) + "?ip=#{row.split(",")[0]}" %></td>
           </tr>
-        <% end %>
-        </tbody>
-    </table>
+          <% end %>
+          </tbody>
+        </table>
     <% else %>
-      <div class="well well-big">
-        No visits yet.
-      </div>
+        <div class="well well-big">
+          No visits yet.
+        </div>
     <% end %>
   </div>
 </div>

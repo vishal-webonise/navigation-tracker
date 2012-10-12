@@ -8,21 +8,21 @@
   <%= render partial: "layouts/shim" %>
 </head>
 <body>
-  <%= render partial: "layouts/header" %>
-    <div class="container">
-      <% flash.each do |key, value| %>
-        <div class="alert alert-<%= key %>"><%= value %></div>
-      <% end %>
-      <div class="row">
-        <aside class="span3">
-          <%= render partial: 'shared/index_sidebar_content' %>
-        </aside>
-        <div class="span9">
-          <%= yield %>
-        </div>
-      </div>
-      <%= render partial: "layouts/footer" %>
-      <%#= debug(params) if Rails.env.development? %>
+<%= render partial: "layouts/header" %>
+<div class="container">
+  <% flash.each do |key, value| %>
+      <div class="alert alert-<%= key %>"><%= value %></div>
+  <% end %>
+  <div class="row">
+    <aside class="span3">
+      <%= render partial: 'shared/index_sidebar_content' %>
+    </aside>
+    <div class="span9">
+      <%= yield %>
     </div>
+  </div>
+  <%= render partial: "layouts/footer" %>
+  <%#= debug(params) if Rails.env.development? %>
+</div>
 </body>
 </html>

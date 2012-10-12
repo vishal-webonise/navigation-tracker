@@ -5,22 +5,24 @@
       <nav>
         <ul class="nav pull-right">
           <% if !user_signed_in? %>
-              <li><%= link_to "Features", root_path %></li>
+              <li><%= link_to "Home",root_path %></li>
+              <li><%= link_to "Features",features_path %></li>
+
           <%     end %>
           <% if user_signed_in? %>
-            <li id="fat-menu" class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <%= "#{current_user.first_name} #{current_user.last_name}" %> <b class="caret"></b>
-              </a>
-              <ul class="dropdown-menu">
-                <% if !is_admin? %>
-                  <li><%= link_to "My Projects", dashboard_index_path %></li>
-                  <li><%= link_to "My Profile", edit_user_path(current_user) %></li>
-                  <li class="divider"></li>
-                <% end %>
+              <li id="fat-menu" class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <%= "#{current_user.first_name} #{current_user.last_name}" %> <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  <% if !is_admin? %>
+                      <li><%= link_to "My Projects", dashboard_index_path %></li>
+                      <li><%= link_to "My Profile", edit_user_path(current_user) %></li>
+                      <li class="divider"></li>
+                  <% end %>
                   <li><%= link_to "Sign out", destroy_user_session_path, method: "delete" %></li>
-              </ul>
-            </li>
+                </ul>
+              </li>
           <% else %>
               <li><%= link_to "Register", new_user_registration_path %></li>
               <li><%= link_to "Login", new_user_session_path %></li>

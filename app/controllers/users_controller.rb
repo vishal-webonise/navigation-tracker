@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   before_filter :authenticate_user!
   before_filter :admin_user, only: [:destroy, :admin_accessible_change, :admin_accessible_update]
 
+
   def index
     @users = User.paginate(:page => params[:page])
     if !params[:q].nil?
@@ -40,11 +41,11 @@ class UsersController < ApplicationController
       redirect_to tracking_code_for_project_path(current_user.projects.last)
     end
   end
-  
+
   def destroy
-  	@user = User.find(params[:id]).destroy
-  	flash[:success] = "User #{@user.first_name} is successfully deleted!"
-  	redirect_to :back
+    @user = User.find(params[:id]).destroy
+    flash[:success] = "User #{@user.first_name} is successfully deleted!"
+    redirect_to :back
   end
 
   def edit
@@ -53,10 +54,10 @@ class UsersController < ApplicationController
       if current_user == @user
         @user
       else
-        redirect_to edit_user_path(current_user)  
+        redirect_to edit_user_path(current_user)
       end
     else
-      redirect_to edit_user_path(current_user)    
+      redirect_to edit_user_path(current_user)
     end
   end
 
@@ -105,9 +106,12 @@ class UsersController < ApplicationController
     end
   end
 
+
   private
 
   def admin_user
     redirect_to :dashboard_index unless is_admin?
   end
+
+
 end

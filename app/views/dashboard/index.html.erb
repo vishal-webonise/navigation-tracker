@@ -2,49 +2,51 @@
   <li class="active"><a href="#new_project">Add new project</a></li>
   <li><a href="#all_projects">My Projects</a></li>
 </ul>
- 
+
 <div class="tab-content">
   <div class="tab-pane active" id="new_project">
     <%= render partial: 'new_project', :locals => { :project => @project } %>
   </div>
   <div class="tab-pane" id="all_projects">
     <% if current_user.projects.any? %>
-      <table class="table table-striped">
-        <thead>
-        <tr>
-          <th>Project</th>
-          <th>Visit Today</th>
-          <th>Yesterday</th>
-          <th>All Time</th>
-        </tr>
-        </thead>
-        <tbody>
-          <% @user.projects.each do |project| %>
-            <% unless project.new_record? %>
-              <tr>
-                <td>
-                  <%= project.domain_url %><br>
-                  <% if controller.project_owner?(project.id) %>  
-                    <%= link_to "Edit Project", edit_project_path(project) %>&nbsp;
-                    <%= link_to "Get Tracking Code", tracking_code_for_project_path(project) %>&nbsp;
-                    <%= link_to "View Stats Details", project_path(project)%>
-                    <%= link_to "Delete Project", project_path(project), :data => { :confirm => "Are you sure?" }, :method => :delete %>
-                    <%= link_to "Assign Users", users_assigned_on_project_path(project) %>
-                  <% end %>
-                </td>
-                <td><%=Project.find(project.id).analytic_datas.select("created_at").where('created_at BETWEEN ? AND ?', DateTime.now.beginning_of_day, DateTime.now.end_of_day).count %></td>
-                <td><%= Project.find(project.id).analytic_datas.select("created_at").where("DATE(created_at) = ?", Date.today-1).count %></td>
-                <td><%= Project.find(project.id).analytic_datas.count %></td>
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>Project</th>
+            <th>Visit Today</th>
+            <th>Yesterday</th>
+            <th>All Time</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @user_projects.each do |project| %>
+              <% unless project.new_record? %>
+                  <tr>
+                    <td>
+                      <%= project.domain_url %><br>
+                      <% if controller.project_owner?(project.id) %>
+                          <%= link_to "Edit Project", edit_project_path(project) %>&nbsp;
+                          <%= link_to "Get Tracking Code", tracking_code_for_project_path(project) %>&nbsp;
+                          <%= link_to "View Stats Details", project_path(project)%>
+                          <%= link_to "Delete Project", project_path(project), :data => { :confirm => "Are you sure?" }, :method => :delete %>
+                          <%= link_to "Assign Users", users_assigned_on_project_path(project) %>
+                      <% end %>
+                    </td>
+                    <% @analytic_data= project.analytic_datas %>
+                    <%  @analytic_count=@analytic_data.count %>
+                    <td><%=@analytic_data.select("created_at").where('created_at BETWEEN ? AND ?', DateTime.now.beginning_of_day, DateTime.now.end_of_day).count %></td>
+                    <td><%=@analytic_data.select("created_at").where("DATE(created_at) = ?", Date.today-1).count %></td>
+                    <td><%=@analytic_count %></td>
 
-              </tr>
-            <% end %>
+                  </tr>
+              <% end %>
           <% end %>
-        </tbody>
-      </table>
+          </tbody>
+        </table>
     <% else %>
-      <div rel="no_projects" class="well well-large">
-        No projects yet.
-      </div>
+        <div rel="no_projects" class="well well-large">
+          No projects yet.
+        </div>
     <% end %>
   </div>
 </div>

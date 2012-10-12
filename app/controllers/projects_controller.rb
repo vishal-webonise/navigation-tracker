@@ -35,10 +35,10 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
-    @analytic_data = @project.analytic_datas
+    @analytic_data = @project.analytic_datas.order('created_at DESC')
     @ip_addresses = @analytic_data.group_by{ |i| i.ip_address }
     # @results = @ip_addresses.collect{ |i,v| i + "," + v.last.created_at.to_s + "," + v.count.to_s + v.select{ |l| [DateTime.now.yesterday...DateTime.now].include?(l.created_at)}.join(",")}
-    @results = @ip_addresses.collect{ |i,v| i + "," + v.last.created_at.to_s + "," + v.count.to_s }
+    @results = @ip_addresses.collect{ |i,v| i + "," + v.first.created_at.to_s + "," + v.count.to_s }
     @results_paginate = @results.paginate(:page => params[:page], :per_page => 10)
     @total_hits = @project.analytic_datas.count
     @total_unique_hits = @project.analytic_datas.map(&:ip_address).uniq.count
@@ -100,6 +100,7 @@ class ProjectsController < ApplicationController
     @project_users_ids = params[:project_users].split(",").to_a
     logger.info("#######################Users to be assigned: #{@project_users_ids.inspect}")
     @project_users_ids.each do |user_id|
+      logger.info("#######################id: #{current_user.id}")
       if user_id != current_user.id
         Project.find(@project_id).user_projects.create(:user_id => user_id, :is_owner => false)
       end
@@ -112,18 +113,17 @@ class ProjectsController < ApplicationController
     logger.info("######################Unassign User data: #{params.inspect}")
     @project_id = params[:id]
     @user_id = params[:user_id]
-      if project_owner?(params[:id])
-        UserProject.where('project_id = ? AND user_id = ? AND is_owner = ?', @project_id, @user_id, false).first.destroy
-        flash[:success] = "User unassigned successfully"
-        redirect_to :dashboard_index
-      end
+    if project_owner?(params[:id])
+      UserProject.where('project_id = ? AND user_id = ? AND is_owner = ?', @project_id, @user_id, false).first.destroy
+      flash[:success] = "User unassigned successfully"
+      redirect_to :dashboard_index
+    end
   end
 
   def visitor_behaviour
     logger.info("######################Project_ID => #{params[:id]}, Visitor_IP => #{params[:ip]}")
     @project = Project.find(params[:id])
     @visit_hour_groups = @project.analytic_datas.where('ip_address = ?', params[:ip]).order('created_at DESC').select('concat(month(created_at),"-",year(created_at),"-",day(created_at),"-",hour(created_at)) as tracking_hour, visit_path, reference_path, created_at').group_by{|i| i.tracking_hour}
-
     respond_to do |format|
       format.html {
         # render :visitor_behaviour 
@@ -139,7 +139,7 @@ class ProjectsController < ApplicationController
     end
   end
 
-  private 
+  private
 
   def find_project
     @project = Project.find(params[:id])
