@@ -250,26 +250,52 @@ ul#admin_sidebar {
 #all_projects a {
   margin-right: 8px;
 }
+#project_total_stat_figures {
+  font-size: 14px;
+  font-weight: bold;
+  margin: -20px 0 15px;
+  text-align: left;
+  span{
+    margin-right: 10px
+  }
+}
 
 
 /* Custom chart styling */
 .jOrgChart {
-  margin                : 10px;
-  padding               : 20px;
+  margin: 0 0 0 300px;
+  padding : 20px;
+  .visit_path {
+    display: inline-block;
+  }
+  .visit_time {
+    display:block !important;
+    font-size: 11px;
+  }
 }
 
 /* Custom node styling */
 .jOrgChart .node {
   font-size       : 14px;
-  background-color  : #35363B;
-  border-radius     : 8px;
+  background-color  : #ddd !important;
+  border-radius     : 100px;
   border        : 5px solid white;
-  color         : #F38630;
+  color         : #333;
   -moz-border-radius  : 8px;
+  margin: 0;
+  padding: 15px;
+}
+.jOrgChart .line {
+  width: 2px !important;
 }
 .node p{
   font-family   : tahoma;
   font-size     : 10px;
   line-height   : 11px;
   padding     : 2px;
+}
+td.node-cell .node {
+  min-width:250px;
+  height:auto;
+  margin:0 auto;
 }

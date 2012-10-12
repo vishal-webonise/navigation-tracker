@@ -1,36 +1,60 @@
 <%#= @visit_hour_groups.inspect %>
-<h2>Site Navigation by <%= params[:ip] %> </h2>
+<h2>
+  Site Navigation by <strong><%= "#{params[:ip]}" %></strong> on project <strong><%= "#{@project.name}" %></strong>
+  <small>
+    <p style="display: inline; float: right; font-size: 15px">Go to <a href="<%= dashboard_index_path %>#all_projects">Dashboard</a></p>
+  </small>
+</h2>
 <hr>
-<% @json %>
 <% @visit_hour_groups.each do |hourly_date, records| %>
 	<div>
-		<h5><%= hourly_date %></h5>
+    <% time = hourly_date.split("-")
+      date = ("2012-12-30-9").to_date.strftime("%b %d, %Y")
+    %>
+		<h4><center><%= "#{date} at #{time[3]} Hrs UTC" %></center></h4>
     <% group = records.group_by{|i| i.tracking_hour} %> 
     <%records.group_by{|i| i.tracking_hour}.each do |i,v| %>
      <% group[i] = v.sort_by(&:created_at) %>
     <% end %>
-    <%= group %>
-    <hr>
- 
-      <% group.each do |i,v| %>
-          <ul id="org<%= hourly_date%>" style="display:none">
-                <li id="<%=i %>">
-              <ul> 
-               <li> 
-        <% v.group_by{|i| i.reference_path}.each do |i,v| %>
-      
-          <% v.each do |vi|%>
-<li id="<%= vi.reference_path%>"><%= vi.visit_path %></li>
-          <% end %> 
-        </ul>  
-        </li>
-        <% end %>
-        </ul>
-       <% end %>   
+    <% group.each do |i,v| %>
+    <%# hash = v.reverse.inject({}) { |a, n| { n.visit_path => a } } %>
+        <div id="chart_<%= hourly_date%>"></div>
+        <ul id="org_<%= hourly_date %>" style="display:none">
+          <% f = 0 %>
+          <% list = v.collect{|i| {:name => i.visit_path, :depth => f = f + 1, :visit_time => i.created_at }} %>
+            <% depth = v.count +1 %>
+            <%list.each_with_index do |cfg,index|%>
+              <%if depth < cfg[:depth] %> 
+                <ul id='<%= "#{index.to_i == 1 ? 'org_'+hourly_date : ''}"%>' style='<%= "#{index.to_i == 1 ? 'display:none' : ''}"%>'>
+              <%elsif depth > cfg[:depth] %>
+                  <%
+                  # take care of the free fall
+                  (depth - cfg[:depth]).times do
+                  %>
+                    </ul>   
+                  <%end%>
+              <%end%>
+              <li>
+                <span class="visit_link"><%= link_to cfg[:name],  @project.domain_url+"/"+cfg[:name], :target => "_blank" %></span>
+                <span class="visit_time">Visited at: <%= cfg[:visit_time].strftime("%H:%M:%S") %></span>
+              <%depth = cfg[:depth] %>
+            <%end%>
+            <%
+            # take care of the final free fall 
+            depth.times do 
+            %>
+              </ul>
+            <%end%>
+          
+    <% end %>   
 	</div>
       <script type="text/javascript">
     jQuery(document).ready(function() {
-      $("#org<%= hourly_date%>").jOrgChart();
+      $("#org_<%= hourly_date%>").jOrgChart({
+        chartElement : '#chart_<%= hourly_date%>'
+      });
     });
     </script>
+</ul>
+<hr>
 <% end %>

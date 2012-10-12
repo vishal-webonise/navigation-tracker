@@ -40,7 +40,8 @@ class ProjectsController < ApplicationController
     # @results = @ip_addresses.collect{ |i,v| i + "," + v.last.created_at.to_s + "," + v.count.to_s + v.select{ |l| [DateTime.now.yesterday...DateTime.now].include?(l.created_at)}.join(",")}
     @results = @ip_addresses.collect{ |i,v| i + "," + v.last.created_at.to_s + "," + v.count.to_s }
     @results_paginate = @results.paginate(:page => params[:page], :per_page => 10)
-
+    @total_hits = @project.analytic_datas.count
+    @total_unique_hits = @project.analytic_datas.map(&:ip_address).uniq.count
     if project_owner?(@project.id)
       render :show
     elsif is_admin?
@@ -120,23 +121,21 @@ class ProjectsController < ApplicationController
 
   def visitor_behaviour
     logger.info("######################Project_ID => #{params[:id]}, Visitor_IP => #{params[:ip]}")
-    @visit_hour_groups = Project.find(params[:id]).analytic_datas.where('ip_address = ?', params[:ip]).order('created_at DESC').select('concat(month(created_at),"-",year(created_at),"-",hour(created_at)) as tracking_hour, visit_path, reference_path, created_at').group_by{|i| i.tracking_hour}
-    json_collection = []
-    @visit_hour_groups.each do |hourly_date, records|
-      records.group_by{|i| i.reference_path}.each do |parent, children| 
-        json_collection.push((results_as_json(parent, children))) 
-      end 
-    end
-    # if project_owner?(params[:id])
-    #   render :visitor_behaviour
-    # elsif is_admin?
-    #   render :visitor_behaviour, layout: 'layouts/admin'
-    # else
-    #   redirect_to :dashboard_index
-    # end
+    @project = Project.find(params[:id])
+    @visit_hour_groups = @project.analytic_datas.where('ip_address = ?', params[:ip]).order('created_at DESC').select('concat(month(created_at),"-",year(created_at),"-",day(created_at),"-",hour(created_at)) as tracking_hour, visit_path, reference_path, created_at').group_by{|i| i.tracking_hour}
+
     respond_to do |format|
-      format.html { render :visitor_behaviour }
-      format.json{ render :json => json_collection }
+      format.html {
+        # render :visitor_behaviour 
+        if project_owner?(params[:id])
+          render :visitor_behaviour
+        elsif is_admin?
+          render :visitor_behaviour, layout: 'layouts/admin'
+        else
+          redirect_to :dashboard_index
+        end
+     }
+      format.json { render :json => json_collection }
     end
   end
 
