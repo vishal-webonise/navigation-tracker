@@ -2,31 +2,31 @@
   <h3><center>Projects on the Analytics</center></h3>
 </section>
 <% if @projects.any? %>
-  <table class="table table-striped">
-    <thread>
-      <tr>
-        <th>Project Name</th>
-        <th>Domain URL</th>
-        <th>Actions</th>
-      </tr>
-    </thread>
-    <tbody>
-    <% @projects.each do |project| %>
-      <tr>
-        <td><%= project.name %></td>
-        <td><%= project.domain_url %></td>
-        <td>
-          <%= link_to "View", project_path(project)%>&nbsp;
-          <%= link_to "Delete", project_path(project), :data => { :confirm => "Are you sure?" }, :method => :delete %>
-        </td>
-      </tr>
-    <% end %>
-    </tbody>
-  </table>
+    <table class="table table-striped">
+      <thread>
+        <tr>
+          <th>Project Name</th>
+          <th>Domain URL</th>
+          <th>Actions</th>
+        </tr>
+      </thread>
+      <tbody>
+      <% @projects.each do |project| %>
+          <tr>
+            <td><%= project.name %></td>
+            <td><%= project.domain_url %></td>
+            <td>
+              <%= link_to "View", project_path(project)%>&nbsp;
+              <%= link_to "Delete", project_path(project), :data => { :confirm => "Are you sure?" }, :method => :delete %>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
 <% else %>
-  <div class="well well-large">
-    There are no projects created yet.
-  </div>
+    <div class="well well-large">
+      There are no projects created yet.
+    </div>
 <% end %>
 <%= will_paginate @projects %>
 

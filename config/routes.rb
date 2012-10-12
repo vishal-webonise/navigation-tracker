@@ -1,5 +1,7 @@
 NavigationTracker::Application.routes.draw do
   root :to => 'static_pages#home'
+  match "features" => 'static_pages#feature'
+
   devise_for :users
   resources :users do
     member do

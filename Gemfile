@@ -21,7 +21,7 @@ gem 'mysql2'
 gem 'jquery-rails'
 gem 'bootstrap-sass', '2.1.0'
 gem 'client_side_validations'
-gem 'will_paginate', '~> 3.0'
+gem 'will_paginate', '~> 3.0.beta'
 gem 'devise'
 
 # To use ActiveModel has_secure_password

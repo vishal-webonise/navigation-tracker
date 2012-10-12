@@ -1,17 +1,17 @@
 <div class="well big-well span8">
-	<h1>Welcome To Analytics</h1>
-	<br/>
-	<div class="row">
-		<div class="span4">
-			<h2>Number Of Users: <%= link_to (@users.count - 1), users_path %></h2>
-		</div>
-		<div class="span4">
-			<h2>Number Of Projects: <%= link_to @projects.count, projects_path %></h2>
-		</div>
-	</div>
-	<div class="row">
-		<div class="span4">
-			<h2>Total No. of unique hits of all the projects:<%= link_to @analytics, projects_path %></h2>
-		</div>
-	</div>
+  <h1>Welcome To Analytics</h1>
+  <br/>
+  <div class="row">
+    <div class="span4">
+      <h2>Number Of Users: <%= link_to (@users.count - 1), users_path %></h2>
+    </div>
+    <div class="span4">
+      <h2>Number Of Projects: <%= link_to @projects.count, projects_path %></h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span4">
+      <h2>Total No. of unique hits of all the projects:<%= link_to @uniq_count, projects_path %></h2>
+    </div>
+  </div>
 </div>

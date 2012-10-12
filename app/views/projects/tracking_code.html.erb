@@ -1,3 +1,6 @@
+<small>
+  <p style="display: inline; float: right; font-size: 15px">Go to <a href="<%= dashboard_index_path %>#all_projects">Dashboard</a></p>
+</small>
 <ul class="nav nav-tabs">
   <li class="active"><a href="#tracking_code">Tracking code</a></li>
 </ul>
@@ -7,5 +10,4 @@
     <br>
     <%= render :partial => 'shared/tracking_code', :locals => { project: @project } %>
   </div>
-  <p>Go back to <a href="<%= dashboard_index_path %>#all_projects" class="btn btn-mini">Dashboard</a></p>
 </div>
