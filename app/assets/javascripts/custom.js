@@ -28,6 +28,7 @@ jQuery(document).ready(function() {
 				{ 
 					propertyToSearch: "first_name",
 					tokenFormatter: function(item) { return "<li class='project_users' id='" + item.id + "'>" + item.first_name + " " + item.last_name + "</li>" },
+					preventDuplicates: true
 				}
 			);
 
@@ -35,7 +36,7 @@ jQuery(document).ready(function() {
 
 	$('#assign_users_to_project').submit(function(){
 		if($('#project_users').val().length < 1){
-			$('#alert_box').addClass("alert-error").html('Users before submit').fadeIn(200).delay(5500).fadeOut(500).removeClass('alert-error');
+			$('#alert_box').addClass("alert-error").html('Select users before submit').fadeIn(200).delay(5500).fadeOut(500).removeClass('alert-error');
 			return false;
 		}
 	});

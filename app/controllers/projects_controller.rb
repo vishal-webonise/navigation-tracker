@@ -97,12 +97,10 @@ class ProjectsController < ApplicationController
     logger.info("#######################In Assign Users: #{params.inspect}")
     @project_id = params[:project_id]
     @project_users_ids = params[:project_users].split(",").to_a
-    user_project = Project.find(@project_id).user_projects.new
+    logger.info("#######################Users to be assigned: #{@project_users_ids.inspect}")
     @project_users_ids.each do |user_id|
       if user_id != current_user.id
-        user_project.user_id = user_id
-        user_project.is_owner = false
-        user_project.save
+        Project.find(@project_id).user_projects.create(:user_id => user_id, :is_owner => false)
       end
     end
     flash[:success] = "User(s) assigned successfully"
