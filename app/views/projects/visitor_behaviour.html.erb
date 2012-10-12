@@ -9,7 +9,7 @@
 <% @visit_hour_groups.each do |hourly_date, records| %>
 	<div>
     <% time = hourly_date.split("-")
-      date = ("2012-12-30-9").to_date.strftime("%b %d, %Y")
+      date = ("#{time[1]}-#{time[0]}-#{time[2]}").to_date.strftime("%b %d, %Y")
     %>
 		<h4><center><%= "#{date} at #{time[3]} Hrs UTC" %></center></h4>
     <% group = records.group_by{|i| i.tracking_hour} %> 
