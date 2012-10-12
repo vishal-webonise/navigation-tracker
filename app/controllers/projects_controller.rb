@@ -39,6 +39,8 @@ class ProjectsController < ApplicationController
     @ip_addresses = @analytic_data.group_by{ |i| i.ip_address }
     # @results = @ip_addresses.collect{ |i,v| i + "," + v.last.created_at.to_s + "," + v.count.to_s + v.select{ |l| [DateTime.now.yesterday...DateTime.now].include?(l.created_at)}.join(",")}
     @results = @ip_addresses.collect{ |i,v| i + "," + v.last.created_at.to_s + "," + v.count.to_s }
+    @results_paginate = @results.paginate(:page => params[:page], :per_page => 10)
+
     if project_owner?(@project.id)
       render :show
     elsif is_admin?

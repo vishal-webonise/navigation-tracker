@@ -219,7 +219,6 @@ ul#admin_sidebar {
 }
 
 
-
 /* home page */
 
 #home_page {
@@ -228,6 +227,21 @@ ul#admin_sidebar {
   }
   a.btn-large {
     margin-right: 30px;
+  }
+}
+
+#features {
+  h2 {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+  }
+  ul {
+    list-style: circle inside none;
+    li {
+      border-bottom: 1px dotted #ddd;
+      padding: 5px;
+    }
   }
 }
 

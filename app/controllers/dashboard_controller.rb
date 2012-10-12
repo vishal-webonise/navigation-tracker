@@ -17,6 +17,7 @@ class DashboardController < ApplicationController
   def admin
     @users = User.all
     @projects = Project.all
+    @analytics=AnalyticData.all.map(&:ip_address).uniq.count
     render layout: 'layouts/admin'
   end
 

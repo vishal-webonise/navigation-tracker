@@ -7,7 +7,7 @@
       <p style="display: inline; float: right; font-size: 15px">Go to <a href="<%= dashboard_index_path %>#all_projects">Dashboard</a></p>
     </small>
     <h2>Name of the Project: <%= @project.name %> </h2>
-    <% if @results.any? %>
+    <% if @results_paginate.any? %>
     <table class="table table-striped table-bordered">
         <thead>
         <tr>
@@ -15,17 +15,21 @@
           <th>Users Visited</th>
           <th>No. of Hits on Domain</th>
           <th>Last Visit Date</th>
+          <% if !is_admin? %>
           <th>Graph</th>
+          <% end %>
         </tr>
         </thead>
         <tbody>
-          <% @results.each_with_index do |row, index| %>
+          <% @results_paginate.each_with_index do |row, index| %>
           <tr>
             <td><%= index+1 %></td>
             <td><%= row.split(",")[0] %></td>
             <td><%= row.split(",")[2] %></td>
             <td><%= row.split(",")[1] %></td>
+            <% if !is_admin? %>
             <td><%= link_to "View Graph", visitor_behaviour_on_project_path(@project) + "?ip=#{row.split(",")[0]}" %></td>
+            <% end %>
           </tr>
         <% end %>
         </tbody>
@@ -37,3 +41,4 @@
     <% end %>
   </div>
 </div>
+<%= will_paginate @results_paginate %>
