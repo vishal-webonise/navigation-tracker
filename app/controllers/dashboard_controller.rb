@@ -20,8 +20,9 @@ class DashboardController < ApplicationController
     @users = User.all
     @projects = Project.all
     #@analytics=AnalyticData.all.map(&:ip_address).uniq.count
-    @analytic_group=AnalyticData.group("ip_address","project_id").count
-    @uniq_count=@analytic_group.count
+    @analytic_group = AnalyticData.group("ip_address","project_id").count
+    @project_total_hits = AnalyticData.count
+    @project_total_unique_hits = @analytic_group.count
     render layout: 'layouts/admin'
   end
 

@@ -17,7 +17,7 @@
             <td><%= project.domain_url %></td>
             <td>
               <%= link_to "View", project_path(project)%>&nbsp;
-              <%= link_to "Delete", project_path(project), :data => { :confirm => "Are you sure?" }, :method => :delete %>
+              <%= link_to "Delete", project_path(project), :data => { :confirm => "Are you sure to delete the project #{project.name}?" }, :method => :delete %>
             </td>
           </tr>
       <% end %>

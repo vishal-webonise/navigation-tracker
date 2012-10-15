@@ -43,9 +43,15 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    # @user = User.find(params[:id]).destroy
-    @user = User.destroy(params[:id])
-    flash[:success] = "User #{@user.first_name} is successfully deleted!"
+    @user = User.find(params[:id])
+    @projects = @user.projects.where('user_projects.project_id = projects.id AND user_projects.is_owner = ?', true)
+    if @projects.any?
+      @projects.each do |project|
+        project.destroy
+      end
+    end
+    @user.destroy
+    flash[:success] = "User #{@user.first_name} is successfully deleted"
     redirect_to :back
   end
 

@@ -28,15 +28,15 @@
                           <%= link_to "Edit Project", edit_project_path(project) %>&nbsp;
                           <%= link_to "Get Tracking Code", tracking_code_for_project_path(project) %>&nbsp;
                           <%= link_to "View Stats Details", project_path(project)%>
-                          <%= link_to "Delete Project", project_path(project), :data => { :confirm => "Are you sure?" }, :method => :delete %>
+                          <%= link_to "Delete Project", project_path(project), :data => { :confirm => "Are you sure to delete the project #{project.name}?" }, :method => :delete %>
                           <%= link_to "Assign Users", users_assigned_on_project_path(project) %>
                       <% end %>
                     </td>
-                    <% @analytic_data= project.analytic_datas %>
-                    <%  @analytic_count=@analytic_data.count %>
-                    <td><%=@analytic_data.select("created_at").where('created_at BETWEEN ? AND ?', DateTime.now.beginning_of_day, DateTime.now.end_of_day).count %></td>
-                    <td><%=@analytic_data.select("created_at").where("DATE(created_at) = ?", Date.today-1).count %></td>
-                    <td><%=@analytic_count %></td>
+                    <% @analytic_data = project.analytic_datas %>
+                    <%  @analytic_count = @analytic_data.count %>
+                    <td><%= @analytic_data.select("created_at").where('created_at BETWEEN ? AND ?', DateTime.now.beginning_of_day, DateTime.now.end_of_day).count %></td>
+                    <td><%= @analytic_data.select("created_at").where("DATE(created_at) = ?", Date.today-1).count %></td>
+                    <td><%= @analytic_count %></td>
 
                   </tr>
               <% end %>

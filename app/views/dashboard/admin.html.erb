@@ -12,7 +12,10 @@
   </div>
   <div class="row">
     <div class="span4">
-      <h2>Total No. of unique hits of all the projects:<%= link_to @uniq_count, projects_path %></h2>
+      <h2>Total no. of Hits of All the Projects: <%= link_to @project_total_hits, projects_path %></h2>
+    </div>
+    <div class="span4">
+      <h2>Total no. of Unique Hits of All the Projects: <%= link_to @project_total_unique_hits, projects_path %></h2>
     </div>
   </div>
 </div>
