@@ -30,7 +30,7 @@
             <td><%= index+1 %></td>
             <td><%= row.split(",")[0] %></td>
             <td><%= row.split(",")[2] %></td>
-            <td><%= row.split(",")[1] %></td>
+            <td><%= row.split(",")[1].to_datetime.strftime("%d %b, %Y at %H:%M:%S") + " UTC" %></td>
             <td><%= link_to "View Graph", visitor_behaviour_on_project_path(@project) + "?ip=#{row.split(",")[0]}" %></td>
           </tr>
           <% end %>
