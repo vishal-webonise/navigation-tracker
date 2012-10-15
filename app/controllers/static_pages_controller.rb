@@ -7,6 +7,9 @@ class StaticPagesController < ApplicationController
   def feature
   end
 
+  def take_tour
+  end
+
   private
 
   def is_signed_in?
