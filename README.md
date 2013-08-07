@@ -1,2 +1,3 @@
 # Navigation Tracker 
-*A custom analytics application*
+
+Tracks user behaviour alike Google Analytics
