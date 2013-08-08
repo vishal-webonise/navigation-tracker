@@ -17,7 +17,14 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'mysql2'
+group :development do
+  gem 'mysql2'
+end
+
+group :production do
+  gem 'pg'
+end
+
 gem 'jquery-rails'
 gem 'bootstrap-sass', '2.1.0'
 gem 'client_side_validations'
