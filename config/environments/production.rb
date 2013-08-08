@@ -2,7 +2,8 @@ NavigationTracker::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
   # Constants
-  SITE_HOST = "navigation_tracking.weboapps.com"
+  # SITE_HOST = "navigation_tracking.weboapps.com"
+  SITE_HOST = "navigation-tracker.herokuapp.com/"
 
   # Code is not reloaded between requests
   config.cache_classes = true
